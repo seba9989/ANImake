@@ -40,23 +40,27 @@
 
 	const session = authClient.useSession();
 
-	const bottomMenu: MenuItem[] = !!$session.data
-		? [
-				// {
-				// 	href: '/admin',
-				// 	icon: ShieldUser
-				// },
-				{
-					href: '/settings',
-					icon: Settings
-				}
-			]
-		: [
-				{
-					href: '/auth',
-					icon: LogIn
-				}
-			];
+	const bottomMenu: MenuItem[] = $derived(
+		!!$session.data
+			? [
+					// {
+					// 	href: '/admin',
+					// 	icon: ShieldUser
+					// },
+					{
+						href: '/settings',
+						icon: Settings
+					}
+				]
+			: [
+					{
+						href: '/auth',
+						icon: LogIn
+					}
+				]
+	);
+
+	$inspect(!!$session.data);
 </script>
 
 <div class="max-sm:contents hidden">

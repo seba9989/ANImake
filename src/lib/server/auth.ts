@@ -2,6 +2,8 @@ import { betterAuth } from 'better-auth';
 import { drizzleAdapter } from 'better-auth/adapters/drizzle';
 import { db } from './db';
 import { admin, organization, twoFactor, username } from 'better-auth/plugins';
+import { sveltekitCookies } from 'better-auth/svelte-kit';
+import { getRequestEvent } from '$app/server';
 
 export const auth = betterAuth({
 	database: drizzleAdapter(db, {
@@ -11,5 +13,8 @@ export const auth = betterAuth({
 	emailAndPassword: {
 		enabled: true
 	},
-	plugins: [twoFactor(), username(), admin(), organization()]
+	// emailVerification: {
+	// autoSignInAfterVerification: true;
+	// },
+	plugins: [sveltekitCookies(getRequestEvent), twoFactor(), admin(), organization()]
 });

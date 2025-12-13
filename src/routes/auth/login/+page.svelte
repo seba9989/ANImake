@@ -3,6 +3,7 @@
 	import type { PageProps } from './$types';
 	import { singIn } from '$lib/actions/auth/singIn.remote';
 	import Icon from '@iconify/svelte';
+	import { authClient } from '$lib/auth-client';
 
 	let { data }: PageProps = $props();
 </script>
@@ -10,10 +11,35 @@
 <div class="card-body gap-2 p-6">
 	<h2 class="card-title mx-auto">Witamy ponownie w HoshiAnime</h2>
 	<div class="flex flex-col h-full">
-		<Form class="grow flex flex-col justify-center " form={singIn}>
+		<Form
+			class="grow flex flex-col justify-center"
+			enhance={async ({ submit, form: formElement }) => {
+				try {
+					await submit();
+				} finally {
+					if (!singIn?.fields.issues()) {
+						await authClient.signIn.email({
+							email: singIn.fields.email.value(),
+							password: singIn.fields._password.value(),
+							rememberMe: singIn.fields.rememberMe.value()
+						});
+
+						formElement.reset();
+					}
+				}
+			}}
+			form={singIn}
+		>
 			<fieldset class="fieldset gap-4 *:w-full">
-				<Form.Field field={singIn.fields.login} placeholder="Login" />
-				<Form.Field.Secret field={singIn.fields._password} placeholder="Hasło" />
+				<Form.Field field={singIn.fields.email} placeholder="Email" />
+				<div>
+					<Form.Field.Secret field={singIn.fields._password} placeholder="Hasło" />
+					<div class="flex justify-between mt-1 items-center">
+						<Form.Checkbox field={singIn.fields.rememberMe} placeholder="Remember me" />
+						<!-- TODO: Dodać odzyskiwanie konta. -->
+						<a class="link link-info" href=".">Nie pamiętam hasła.</a>
+					</div>
+				</div>
 				<div class="grid gap-4 sm:grid-cols-2">
 					<button type="submit" class="btn text-nowrap btn-secondary"> Zaloguj się </button>
 					<a href="/auth/register" class="btn text-nowrap btn-neutral"> Zarejestruj się </a>
@@ -21,6 +47,7 @@
 			</fieldset>
 		</Form>
 		<div class="divider">LUB</div>
+		<div class="grow"></div>
 		<div class="flex justify-around">
 			<div class="tooltip" data-tip="Już wkrótce">
 				<a
