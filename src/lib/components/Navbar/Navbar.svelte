@@ -1,7 +1,20 @@
 <script lang="ts">
 	import { page } from '$app/state';
-	import { Calendar, House, Menu, MoonStar, Search, Settings, X, type Icon } from 'lucide-svelte';
+	import { authClient } from '$lib/auth-client';
+	import {
+		Calendar,
+		House,
+		LogIn,
+		Menu,
+		MoonStar,
+		Search,
+		Settings,
+		ShieldUser,
+		X,
+		type Icon
+	} from 'lucide-svelte';
 	import type { Snippet } from 'svelte';
+	import Link from './assets/Link.svelte';
 
 	type MenuItem = {
 		href: string;
@@ -25,12 +38,25 @@
 		}
 	];
 
-	const bottomMenu: MenuItem[] = [
-		{
-			href: '/settings',
-			icon: Settings
-		}
-	];
+	const session = authClient.useSession();
+
+	const bottomMenu: MenuItem[] = !!$session.data
+		? [
+				// {
+				// 	href: '/admin',
+				// 	icon: ShieldUser
+				// },
+				{
+					href: '/settings',
+					icon: Settings
+				}
+			]
+		: [
+				{
+					href: '/auth',
+					icon: LogIn
+				}
+			];
 </script>
 
 <div class="max-sm:contents hidden">
@@ -57,27 +83,13 @@
 			<MoonStar size="28" />
 		</div>
 		<div class="grid grid-flow-row pr-2 gap-1">
-			{#each topMenu as { href, icon, disable }}
-				{@const Icon = icon}
-				<div
-					class={['pl-2 rounded-r-md', { 'bg-base-content text-base-100': page.route.id === href }]}
-				>
-					<div class={['aspect-square flex justify-center w-full items-center']}>
-						<Icon />
-					</div>
-				</div>
+			{#each topMenu as item}
+				<Link {...item} />
 			{/each}
 		</div>
 		<div class="grid grid-flow-row pr-2 gap-1 mt-auto">
-			{#each bottomMenu as { href, icon, disable }}
-				{@const Icon = icon}
-				<div
-					class={['pl-2 rounded-r-md', { 'bg-base-content text-base-100': page.route.id === href }]}
-				>
-					<div class={['aspect-square flex justify-center w-full items-center']}>
-						<Icon />
-					</div>
-				</div>
+			{#each bottomMenu as item}
+				<Link {...item} />
 			{/each}
 		</div>
 	</div>
