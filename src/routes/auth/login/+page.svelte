@@ -1,7 +1,57 @@
 <script lang="ts">
+	import Form from '$lib/components/Form';
 	import type { PageProps } from './$types';
+	import { singIn } from '$lib/actions/auth/singIn.remote';
+	import Icon from '@iconify/svelte';
 
 	let { data }: PageProps = $props();
 </script>
 
-<div></div>
+<div class="card-body gap-2 p-6">
+	<h2 class="card-title mx-auto">Witamy ponownie w HoshiAnime</h2>
+	<div class="flex flex-col h-full">
+		<Form class="grow flex flex-col justify-center " form={singIn}>
+			<fieldset class="fieldset gap-4 *:w-full">
+				<Form.Field field={singIn.fields.login} placeholder="Login" />
+				<Form.Field.Secret field={singIn.fields._password} placeholder="Hasło" />
+				<div class="grid gap-4 sm:grid-cols-2">
+					<button type="submit" class="btn text-nowrap btn-secondary"> Zaloguj się </button>
+					<a href="/auth/register" class="btn text-nowrap btn-neutral"> Zarejestruj się </a>
+				</div>
+			</fieldset>
+		</Form>
+		<div class="divider">LUB</div>
+		<div class="flex justify-around">
+			<div class="tooltip" data-tip="Już wkrótce">
+				<a
+					href="/"
+					class="btn-disabled btn btn-square p-2 btn-neutral"
+					role="button"
+					aria-disabled="true"
+				>
+					<Icon icon="simple-icons:discord" width="none" />
+				</a>
+			</div>
+			<div class="tooltip" data-tip="Już wkrótce">
+				<a
+					href="/"
+					class="btn-disabled btn btn-square p-2 btn-neutral"
+					role="button"
+					aria-disabled="true"
+				>
+					<Icon icon="simple-icons:google" width="none" />
+				</a>
+			</div>
+			<div class="tooltip" data-tip="Już wkrótce">
+				<a
+					href="/"
+					class="btn-disabled btn btn-square p-2 btn-neutral"
+					role="button"
+					aria-disabled="true"
+				>
+					<Icon icon="simple-icons:github" width="none" />
+				</a>
+			</div>
+		</div>
+	</div>
+</div>

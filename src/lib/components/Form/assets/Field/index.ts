@@ -1,0 +1,24 @@
+import type { RemoteFormField, RemoteFormFieldType } from '@sveltejs/kit';
+import Field from './Field.svelte';
+import type { HTMLInputAttributes } from 'svelte/elements';
+import Secret from './assets/Secret.svelte';
+import type { Snippet } from 'svelte';
+
+export type FieldProps = (
+	| {
+			field?: RemoteFormField<string>;
+			type?: RemoteFormFieldType<string>;
+	  }
+	| {
+			field?: undefined;
+			type?: HTMLInputAttributes['type'];
+	  }
+) & {
+	class?: string;
+	placeholder?: string;
+	required?: boolean;
+	value?: HTMLInputAttributes['value'];
+	children?: Snippet;
+};
+
+export default Object.assign(Field, { Secret });

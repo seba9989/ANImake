@@ -12,7 +12,7 @@
 
 <div class="flex">
 	<Navbar />
-	<div class="p-4">
+	<div class="p-4 w-full">
 		{@render children()}
 	</div>
 </div>
