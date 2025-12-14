@@ -43,10 +43,14 @@
 	const bottomMenu: MenuItem[] = $derived(
 		!!$session.data
 			? [
-					// {
-					// 	href: '/admin',
-					// 	icon: ShieldUser
-					// },
+					...($session.data?.user.role === 'admin'
+						? [
+								{
+									href: '/admin',
+									icon: ShieldUser
+								}
+							]
+						: []),
 					{
 						href: '/settings',
 						icon: Settings
@@ -60,11 +64,11 @@
 				]
 	);
 
-	$inspect(!!$session.data);
+	$inspect($session.data?.user.role);
 </script>
 
 <div class="max-sm:contents hidden">
-	<div class="fab fab-flower">
+	<div class="fab">
 		<div tabindex="0" role="button" class="btn btn-lg btn-circle btn-secondary"><Menu /></div>
 
 		<div class="fab-close">
