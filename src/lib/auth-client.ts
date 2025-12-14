@@ -7,5 +7,5 @@ import {
 } from 'better-auth/client/plugins';
 
 export const authClient = createAuthClient({
-	plugins: [twoFactorClient(), usernameClient(), adminClient(), organizationClient()]
+	plugins: [twoFactorClient(), adminClient(), organizationClient()]
 });
