@@ -95,7 +95,7 @@
 				<Link {...item} />
 			{/each}
 		</div>
-		<div class="grid grid-flow-row pr-2 gap-1 mt-auto">
+		<div class="grid grid-flow-row pr-2 gap-1 mt-auto mb-4">
 			{#each bottomMenu as item}
 				<Link {...item} />
 			{/each}
