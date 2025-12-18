@@ -11,16 +11,13 @@
 		Settings,
 		ShieldUser,
 		X,
-		type Icon
 	} from 'lucide-svelte';
-	import type { Snippet } from 'svelte';
+	import type { ComponentProps, Snippet } from 'svelte';
 	import Link from './assets/Link.svelte';
+	import { cn } from '$lib/utils/cn';
+	import { user as getUser } from '$lib/actions/auth/user.remote';
 
-	type MenuItem = {
-		href: string;
-		icon: typeof Icon;
-		disable?: boolean;
-	};
+	type MenuItem = ComponentProps<typeof Link>;
 
 	const topMenu: MenuItem[] = [
 		{
@@ -38,15 +35,16 @@
 		}
 	];
 
-	const session = authClient.useSession();
+	const user = $derived(await getUser());
 
 	const bottomMenu: MenuItem[] = $derived(
-		!!$session.data
+		!!user
 			? [
-					...($session.data?.user.role === 'admin'
+					...(user.role === 'admin'
 						? [
 								{
 									href: '/admin',
+									regex: /\/admin.*/,
 									icon: ShieldUser
 								}
 							]
@@ -59,12 +57,13 @@
 			: [
 					{
 						href: '/auth',
+						regex: /\/auth.*/,
 						icon: LogIn
 					}
 				]
 	);
 
-	$inspect($session.data?.user.role);
+	$inspect(user.role);
 </script>
 
 <div class="max-sm:contents hidden">
@@ -90,12 +89,12 @@
 		<div class="flex justify-center w-full aspect-square items-center text-yellow-400">
 			<MoonStar size="28" />
 		</div>
-		<div class="grid grid-flow-row pr-2 gap-1">
+		<div class="grid grid-flow-row pr-2 gap-2">
 			{#each topMenu as item}
 				<Link {...item} />
 			{/each}
 		</div>
-		<div class="grid grid-flow-row pr-2 gap-1 mt-auto mb-4">
+		<div class="grid grid-flow-row pr-2 gap-2 mt-auto mb-4">
 			{#each bottomMenu as item}
 				<Link {...item} />
 			{/each}

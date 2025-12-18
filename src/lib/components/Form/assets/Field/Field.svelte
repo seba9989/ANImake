@@ -4,6 +4,7 @@
 
 	let {
 		field,
+		wrapperClass,
 		class: className,
 		type = 'text',
 		placeholder,
@@ -14,12 +15,10 @@
 	// const issues = $derived(field && field.issues());
 
 	let issues = $derived(field?.issues());
-
-	$inspect(issues);
 </script>
 
 {#if field}
-	<div class="">
+	<div class={cn(wrapperClass)}>
 		<label class={cn({ 'input-error': issues }, 'input w-full min-w-0', className)}>
 			<input {...field.as(type as any)} class="grow" {placeholder} bind:value />
 			{@render children?.()}
@@ -35,5 +34,13 @@
 		{/each}
 	</div>
 {:else}
-	<input {type} class={cn('validator input w-full min-w-0', className)} {placeholder} bind:value />
+	<div class={cn(wrapperClass)}>
+		<label class={cn('input w-full min-w-0', className)}>
+			<input type="text" class="grow" {placeholder} bind:value />
+			{@render children?.()}
+			{#if !required}
+				<span class="badge badge-neutral badge-xs">Optional</span>
+			{/if}
+		</label>
+	</div>
 {/if}

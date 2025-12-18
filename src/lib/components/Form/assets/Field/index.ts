@@ -14,6 +14,7 @@ export type FieldProps = (
 			type?: HTMLInputAttributes['type'];
 	  }
 ) & {
+	wrapperClass?: string;
 	class?: string;
 	placeholder?: string;
 	required?: boolean;

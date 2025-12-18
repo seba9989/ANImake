@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { cn } from '$lib/utils/cn';
-	import type { RemoteFormField, RemoteFormFieldType } from '@sveltejs/kit';
-	import type { Snippet } from 'svelte';
+	import type { RemoteFormField } from '@sveltejs/kit';
 	import type { HTMLInputAttributes } from 'svelte/elements';
 
 	type Props = {

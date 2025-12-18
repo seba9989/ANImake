@@ -16,5 +16,35 @@ export const auth = betterAuth({
 	// emailVerification: {
 	// autoSignInAfterVerification: true;
 	// },
-	plugins: [sveltekitCookies(getRequestEvent), twoFactor(), admin(), organization()]
+	plugins: [
+		sveltekitCookies(getRequestEvent),
+		twoFactor(),
+		admin(),
+		organization({
+			schema: {
+				organization: {
+					additionalFields: {
+						banner: {
+							type: 'string',
+							input: true,
+							required: false
+						},
+						description: {
+							type: 'string',
+							input: true,
+							required: false
+						},
+						discord: {
+							type: 'string',
+							input: true,
+							required: false
+						}
+					}
+				}
+			},
+			creatorRole: 'admin'
+		})
+	]
 });
+
+export type Session = typeof auth.$Infer.Session;

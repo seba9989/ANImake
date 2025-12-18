@@ -10,9 +10,15 @@
 	<link rel="icon" href={favicon} />
 </svelte:head>
 
-<div class="flex">
-	<Navbar />
-	<div class="p-4 w-full">
-		{@render children()}
+<svelte:boundary>
+	<div class="flex">
+		<Navbar />
+		<div class="p-4 w-full">
+			{@render children()}
+		</div>
 	</div>
-</div>
+
+	{#snippet pending()}
+		<p>loading...</p>
+	{/snippet}
+</svelte:boundary>

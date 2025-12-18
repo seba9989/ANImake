@@ -11,25 +11,7 @@
 <div class="card-body gap-2 p-6">
 	<h2 class="card-title mx-auto">Witamy ponownie w HoshiAnime</h2>
 	<div class="flex flex-col h-full">
-		<Form
-			class="grow flex flex-col justify-center"
-			enhance={async ({ submit, form: formElement }) => {
-				try {
-					await submit();
-				} finally {
-					if (!singIn?.fields.issues()) {
-						await authClient.signIn.email({
-							email: singIn.fields.email.value(),
-							password: singIn.fields._password.value(),
-							rememberMe: singIn.fields.rememberMe.value()
-						});
-
-						formElement.reset();
-					}
-				}
-			}}
-			form={singIn}
-		>
+		<Form class="grow flex flex-col justify-center" form={singIn}>
 			<fieldset class="fieldset gap-4 *:w-full">
 				<Form.Field field={singIn.fields.email} placeholder="Email" />
 				<div>
