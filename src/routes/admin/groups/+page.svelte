@@ -11,8 +11,7 @@
 	let organizationList = $derived(
 		await organization.list({
 			options: {
-				perPage: 'all',
-				page: 0
+				perPage: 'all'
 			},
 			query: {
 				searchName

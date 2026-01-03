@@ -4,25 +4,34 @@ import { type } from 'arktype';
 import { DrizzleError, DrizzleQueryError } from 'drizzle-orm';
 import type { PgSelect } from 'drizzle-orm/pg-core';
 
-const options = type({
-	page: 'number',
-	perPage: '"all" | number = 12'
-});
+const options = type(
+	{
+		page: 'number > 0',
+		perPage: ['number > 0', '=', 12]
+	},
+	'|',
+	{
+		'page?': 'never',
+		perPage: '"all"'
+	}
+);
 
 export const getManyProps = type('<query extends object>', {
 	options,
 	query: 'query'
 });
 
+export type MetaData = {
+	page: number;
+	isPrev: boolean;
+	isNext: boolean;
+	total: number;
+};
+
 export type GetManyResp<T> = Promise<
 	| {
 			data: T[];
-			metadata: {
-				page: number;
-				isPrev: boolean;
-				isNext: boolean;
-				total: number;
-			};
+			metadata: MetaData;
 	  }
 	| undefined
 >;

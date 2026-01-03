@@ -1,9 +1,5 @@
 import { scope, type } from 'arktype';
 
-const extensionToStringScope = scope({
-	'url.optional': type("string.url | ''").pipe((s) => (s === '' ? undefined : s))
-});
-
 export const formScope = scope({
 	string: type.module({
 		...type.keywords.string,
@@ -12,5 +8,9 @@ export const formScope = scope({
 			...type.keywords.string.url,
 			optional: type("string.url | ''").pipe((s) => (s === '' ? undefined : s))
 		})
-	})
+	}),
 });
+
+export type Prettify<T> = {
+	[K in keyof T]: T[K];
+} & {};

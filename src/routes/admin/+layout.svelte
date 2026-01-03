@@ -28,7 +28,7 @@
 	<div>
 		<Menu>
 			<Menu.Item href="/admin/groups" regex={/\/admin\/groups.*/}>Groups</Menu.Item>
-			<Menu.Item href="/admin/series">Series</Menu.Item>
+			<Menu.Item href="/admin/series" regex={/\/admin\/series.*/}>Series</Menu.Item>
 		</Menu>
 	</div>
 	<div class="grow">

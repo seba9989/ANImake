@@ -1,9 +1,15 @@
 import { pgEnum } from 'drizzle-orm/pg-core';
 
-
 export const content_Enum = pgEnum('content', ['subtitles', 'lector']);
 
-export const seriesType_Enum = pgEnum('series_type', ['tv', 'ova', 'ona', 'special', 'movie']);
+export const seriesType_Enum = pgEnum('series_type', [
+	'ona',
+	'ova',
+	'tv',
+	'movie',
+	'music',
+	'special'
+]);
 
 export const seriesSeason_Enum = pgEnum('series_season', ['spring', 'summer', 'fall', 'winter']);
 
@@ -29,25 +35,3 @@ export const seriesStatus_Enum = pgEnum('series_status', [
 ]);
 
 export const legacyPlayerType_Enum = pgEnum('legacy_player_type', ['video', 'download']);
-
-export const seriesGenre_Enum = pgEnum('series_genre', [
-	'action',
-	'adventure',
-	'comedy',
-	'drama',
-	'ecchi',
-	'fantasy',
-	'hentai',
-	'horror',
-	'mahou shoujo',
-	'mecha',
-	'music',
-	'mystery',
-	'psychological',
-	'romance',
-	'sci-fi',
-	'slice of life',
-	'sports',
-	'supernatural',
-	'thriller'
-]);
