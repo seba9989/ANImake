@@ -1,6 +1,4 @@
 <script lang="ts">
-	import { page } from '$app/state';
-	import { authClient } from '$lib/auth-client';
 	import {
 		Calendar,
 		House,
@@ -10,11 +8,10 @@
 		Search,
 		Settings,
 		ShieldUser,
-		X,
+		X
 	} from 'lucide-svelte';
-	import type { ComponentProps, Snippet } from 'svelte';
+	import type { ComponentProps } from 'svelte';
 	import Link from './assets/Link.svelte';
-	import { cn } from '$lib/utils/cn';
 	import { user as getUser } from '$lib/actions/auth/user.remote';
 
 	type MenuItem = ComponentProps<typeof Link>;
@@ -63,7 +60,7 @@
 				]
 	);
 
-	$inspect(user.role);
+	$inspect(user?.role);
 </script>
 
 <div class="max-sm:contents hidden">

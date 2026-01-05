@@ -1,7 +1,7 @@
 import { pgTable, uuid } from 'drizzle-orm/pg-core';
 import { episode, legacyPlayer, player, watchHistory } from './';
 import { relations } from 'drizzle-orm';
-import { organizationToSource } from './organizationToSource';
+import { groupToSource } from './groupToSource';
 
 export const source = pgTable('source', {
 	id: uuid().defaultRandom().primaryKey(),
@@ -16,7 +16,7 @@ export const source_Relations = relations(source, ({ one, many }) => ({
 		references: [episode.id]
 	}),
 
-	organizationToSource_s: many(organizationToSource),
+	organizationToSource_s: many(groupToSource),
 
 	watchHistory_s: many(watchHistory),
 

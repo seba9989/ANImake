@@ -19,31 +19,31 @@ export const auth = betterAuth({
 	plugins: [
 		sveltekitCookies(getRequestEvent),
 		twoFactor(),
-		admin(),
-		organization({
-			schema: {
-				organization: {
-					additionalFields: {
-						banner: {
-							type: 'string',
-							input: true,
-							required: false
-						},
-						description: {
-							type: 'string',
-							input: true,
-							required: false
-						},
-						discord: {
-							type: 'string',
-							input: true,
-							required: false
-						}
-					}
-				}
-			},
-			creatorRole: 'admin'
-		})
+		admin()
+		// organization({
+		// 	schema: {
+		// 		organization: {
+		// 			additionalFields: {
+		// 				banner: {
+		// 					type: 'string',
+		// 					input: true,
+		// 					required: false
+		// 				},
+		// 				description: {
+		// 					type: 'string',
+		// 					input: true,
+		// 					required: false
+		// 				},
+		// 				discord: {
+		// 					type: 'string',
+		// 					input: true,
+		// 					required: false
+		// 				}
+		// 			}
+		// 		}
+		// 	},
+		// 	creatorRole: 'admin'
+		// })
 	]
 });
 

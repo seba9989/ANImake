@@ -13,17 +13,17 @@
 	<Form form={organization.update} class="flex flex-col gap-2 bg-base-200 p-2 rounded-lg">
 		<Form.Field field={fields.name} placeholder="Nazwa grupy" value={org?.name} />
 		<Form.Field field={fields.slug} placeholder="Slug" value={org?.slug} />
-		<Form.Field field={fields.logo} placeholder="Logo URL" value={org?.logo} required={false} />
+		<Form.Field field={fields.logoUrl} placeholder="Logo URL" value={org?.logoUrl} required={false} />
 		<Form.Field
-			field={fields.banner}
+			field={fields.bannerUrl}
 			placeholder="Banner URL"
-			value={org?.banner}
+			value={org?.bannerUrl}
 			required={false}
 		/>
 		<Form.Field
-			field={fields.discord}
+			field={fields.discordUrl}
 			placeholder="Discord URL"
-			value={org?.discord}
+			value={org?.discordUrl}
 			required={false}
 		/>
 		<Form.Textarea

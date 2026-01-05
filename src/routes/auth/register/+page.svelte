@@ -1,10 +1,11 @@
 <script lang="ts">
 	import { singUp } from '$lib/actions/auth/singUp.remote';
-	import { authClient } from '$lib/auth-client';
 	import Form from '$lib/components/Form';
 	import type { PageProps } from './$types';
 
 	let { data }: PageProps = $props();
+
+	$inspect(singUp.fields.allIssues());
 </script>
 
 <div class="card-body gap-2 p-6">

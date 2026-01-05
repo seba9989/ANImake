@@ -1,10 +1,13 @@
 import { form, getRequestEvent } from '$app/server';
 import { auth } from '$lib/server/auth';
+import { db } from '$lib/server/db';
+import { group } from '$lib/server/db/schema';
 import { formScope } from '$lib/utils/typst';
 import { APIError } from 'better-auth';
+import { eq } from 'drizzle-orm';
 
 const props = formScope.type({
-    organizationId: "string > 0",
+    groupId: "string > 0",
 
 	name: 'string > 0',
 	slug: 'string > 0',
@@ -14,15 +17,16 @@ const props = formScope.type({
 	description: 'string.optional'
 });
 
-export const update = form(props, async ({organizationId, ...body }) => {
+export const update = form(props, async ({groupId, ...body }) => {
 	try {
-		const t = await auth.api.updateOrganization({
-            body: {
-                data: body,
-                organizationId: organizationId
-            },
-            headers: getRequestEvent().request.headers
-        })
+		await db.update(group).set(body).where(eq(group.id, groupId))
+		// const t = await auth.api.updateOrganization({
+        //     body: {
+        //         data: body,
+        //         organizationId: organizationId
+        //     },
+        //     headers: getRequestEvent().request.headers
+        // })
 	} catch (e) {
 		if (e instanceof APIError) {
 			console.log(e.message);

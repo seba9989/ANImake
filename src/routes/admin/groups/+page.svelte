@@ -27,13 +27,13 @@
 		<a href="/admin/groups/create" class="btn btn-secondary"> Stwórz nową </a>
 	</Form>
 	<ul class="list bg-base-100 rounded-box shadow-md">
-		{#each organizationList?.data as { name, slug, logo, createdAt }}
+		{#each organizationList?.data as { name, slug, logoUrl, createdAt }}
 			{@const _createdAt = new Intl.DateTimeFormat('pl-PL').format(createdAt)}
 			<li class="list-row">
-				{#if logo}
+				{#if logoUrl}
 					<div class="avatar">
 						<div class="w-10 rounded">
-							<img src={logo} alt="" />
+							<img src={logoUrl} alt="" />
 						</div>
 					</div>
 				{:else}

@@ -9,6 +9,8 @@
 	let { data }: PageProps = $props();
 
 	let { fields } = organization.create;
+
+	$inspect(fields.allIssues());
 </script>
 
 <Form form={organization.create} class="flex flex-col gap-2 max-w-2xl bg-base-200 p-2 rounded-lg">
@@ -26,9 +28,10 @@
 			</div>
 		</div>
 	</div>
-	<Form.Field required={false} field={fields.logo} placeholder="Logo URL" />
-	<Form.Field required={false} field={fields.banner} placeholder="Banner URL" />
-	<Form.Field required={false} field={fields.discord} placeholder="Discord URL" />
+
+	<Form.Field required={false} field={fields.logoUrl} placeholder="Logo URL" />
+	<Form.Field required={false} field={fields.bannerUrl} placeholder="Banner URL" />
+	<Form.Field required={false} field={fields.discordUrl} placeholder="Discord URL" />
 	<Form.Textarea
 		field={fields.description}
 		placeholder="Opis grupy"

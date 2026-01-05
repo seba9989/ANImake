@@ -24,8 +24,6 @@ export const seriesRelationType_Enum = pgEnum('series_relation_type', [
 	'other'
 ]);
 
-export const groupType_Enum = pgEnum('group_type', ['subtitles', 'lector']);
-
 export const seriesStatus_Enum = pgEnum('series_status', [
 	'airing',
 	'finished',
@@ -35,3 +33,5 @@ export const seriesStatus_Enum = pgEnum('series_status', [
 ]);
 
 export const legacyPlayerType_Enum = pgEnum('legacy_player_type', ['video', 'download']);
+
+export const memberRole_Enum = pgEnum('member_role', ['owner', 'admin', 'member']);

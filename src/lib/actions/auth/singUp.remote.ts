@@ -5,7 +5,7 @@ import { type } from 'arktype';
 const propsType = type({
 	name: 'string > 0',
 	email: 'string > 0',
-	password: 'string > 0',
+	password: 'string >= 8',
 	confirmPassword: 'string > 0',
 	'image?': 'string > 0 | undefined',
 	'callbackURL?': 'string > 0 | undefined',
@@ -22,6 +22,10 @@ const propsType = type({
 });
 
 export const singUp = form(propsType, async (body) => {
-	const t = await auth.api.signUpEmail({ body });
-	console.log(t);
+	try {
+		const t = await auth.api.signUpEmail({ body });
+		console.log(t);
+	} catch (e) {
+		console.log(e);
+	}
 });

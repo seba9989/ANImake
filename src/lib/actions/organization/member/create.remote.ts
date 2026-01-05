@@ -1,26 +1,18 @@
 import { form } from '$app/server';
-import { auth } from '$lib/server/auth';
-import { member } from '$lib/server/db/schema';
+import { db } from '$lib/server/db';
+import { groupMember } from '$lib/server/db/schema';
 import { formScope } from '$lib/utils/typst';
 import { error } from '@sveltejs/kit';
-import { APIError } from 'better-auth';
-import { createSelectSchema } from 'drizzle-arktype';
+import { createInsertSchema } from 'drizzle-arktype';
+import { DrizzleError, DrizzleQueryError } from 'drizzle-orm';
 
-const r = formScope.type('"owner" | "admin" | "member"');
-
-const props = formScope
-	.type(createSelectSchema(member).pick('organizationId', 'userId', 'role'))
-	.merge({
-		role: [r, '[]']
-	});
+const props = formScope.type(createInsertSchema(groupMember).omit("createdAt", "updateAt"));
 
 export const create = form(props, async ({ ...body }) => {
 	try {
-		await auth.api.addMember({
-			body
-		});
+		await db.insert(groupMember).values(body);
 	} catch (e) {
-		if (e instanceof APIError) {
+		if (e instanceof DrizzleError || e instanceof DrizzleQueryError) {
 			error(500, e.message);
 		}
 		console.log(e);

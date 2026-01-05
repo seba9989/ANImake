@@ -1,6 +1,6 @@
 import { relations, sql } from 'drizzle-orm';
 import { boolean, date, integer, pgTable, text, timestamp, uuid } from 'drizzle-orm/pg-core';
-import { seriesRelation, seriesSeason_Enum, seriesType_Enum } from './';
+import { seriesRelation, seriesSeason_Enum, seriesToCategory, seriesType_Enum } from './';
 import type { Prettify } from '$lib/utils/typst';
 
 export const series = pgTable('series', {
@@ -27,7 +27,8 @@ export const series = pgTable('series', {
 });
 
 export const series_Relations = relations(series, ({ many }) => ({
-	seriesRelation_s: many(seriesRelation, { relationName: 'referenceSeries' })
+	seriesRelation_s: many(seriesRelation, { relationName: 'referenceSeries' }),
+	seriesCategory_s: many(seriesToCategory)
 }));
 
 export type SeriesPrototype =

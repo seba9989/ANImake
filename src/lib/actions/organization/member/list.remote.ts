@@ -1,18 +1,18 @@
 import { query } from '$app/server';
 import { db, search } from '$lib/server/db';
-import { member, user } from '$lib/server/db/schema';
+import { groupMember, user } from '$lib/server/db/schema';
 import { addMeta, getManyProps, type GetManyResp } from '$lib/utils/dbParse';
 import { createSelectSchema } from 'drizzle-arktype';
 import { and, eq, getTableColumns } from 'drizzle-orm';
 
 const Props = getManyProps({
-	organizationId: createSelectSchema(member).get('organizationId'),
+	groupId: createSelectSchema(groupMember).get('groupId'),
 	'searchName?': 'string',
-	'role?': 'string | undefined'
+	role: createSelectSchema(groupMember).get('role').optional()
 });
 
 type Resp = GetManyResp<
-	typeof member.$inferSelect & {
+	typeof groupMember.$inferSelect & {
 		user: typeof user.$inferSelect;
 	}
 >;
@@ -20,17 +20,17 @@ type Resp = GetManyResp<
 export const list = query(Props, async ({ options, query }): Resp => {
 	const dbQuery = db
 		.select({
-			...getTableColumns(member),
+			...getTableColumns(groupMember),
 			user: {
 				...getTableColumns(user)
 			}
 		})
-		.from(member)
-		.innerJoin(user, eq(member.userId, user.id))
+		.from(groupMember)
+		.innerJoin(user, eq(groupMember.userId, user.id))
 		.where(
 			and(
-				eq(member.organizationId, query.organizationId),
-				!!query.role ? eq(member.role, query.role) : undefined,
+				eq(groupMember.groupId, query.groupId),
+				!!query.role ? eq(groupMember.role, query.role) : undefined,
 				!!query.searchName ? search(user.name, query.searchName) : undefined
 			)
 		)

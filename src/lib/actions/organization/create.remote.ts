@@ -1,27 +1,26 @@
-import { form, getRequestEvent } from '$app/server';
-import { auth } from '$lib/server/auth';
+import { form } from '$app/server';
+import { db } from '$lib/server/db';
+import { group } from '$lib/server/db/schema';
 import { formScope } from '$lib/utils/typst';
-import { APIError } from 'better-auth';
+import { error } from '@sveltejs/kit';
+import { createInsertSchema } from 'drizzle-arktype';
+import { DrizzleError, DrizzleQueryError } from 'drizzle-orm';
 
-const props = formScope.type({
-	name: 'string > 0',
-	slug: 'string > 0',
-	logo: 'string.url.optional',
-	banner: 'string.url.optional',
-	discord: 'string.url.optional',
-	description: 'string.optional'
-});
+const props = createInsertSchema(group, {
+	logoUrl: formScope.type('string.url.optional'),
+	bannerUrl: formScope.type('string.url.optional'),
+	discordUrl: formScope.type('string.url.optional'),
+	description: formScope.type('string.optional')
+}).omit('id', 'createdAt', 'updateAt');
 
 export const create = form(props, async ({ ...body }) => {
 	try {
-		const t = await auth.api.createOrganization({
-			body,
-			headers: getRequestEvent().request.headers
-		});
+		await db.insert(group).values(body);
 	} catch (e) {
-		if (e instanceof APIError) {
-			console.log(e.message);
+		if (e instanceof DrizzleError || e instanceof DrizzleQueryError) {
+			error(500, e.message);
 		}
+		console.log(e);
 		console.log(e);
 	}
 });

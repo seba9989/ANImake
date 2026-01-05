@@ -3,5 +3,18 @@
 		"*.css": "tailwindcss"
 	},
 	"typescript.tsdk": "node_modules/typescript/lib",
-	"typescript.enablePromptUseWorkspaceTsdk": true
+	"typescript.enablePromptUseWorkspaceTsdk": true,
+	"sqltools.connections": [
+		{
+			"ssh": "Disabled",
+			"previewLimit": 50,
+			"server": "localhost",
+			"port": 5432,
+			"driver": "PostgreSQL",
+			"name": "AniMake",
+			"database": "local",
+			"password": "mysecretpassword",
+			"username": "root"
+		}
+	]
 }

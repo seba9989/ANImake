@@ -1,6 +1,5 @@
 import type {
 	content_Enum,
-	groupType_Enum,
 	legacyPlayerType_Enum,
 	seriesRelationType_Enum,
 	seriesSeason_Enum,
@@ -40,11 +39,6 @@ export const seriesRelationTypeEnum: PgEnumToMap<typeof seriesRelationType_Enum>
 	['alternative', 'Wersja alternatywna'],
 	['spin_off', 'SpinOff'],
 	['other', 'Inne']
-]);
-
-export const groupTypeEnum: PgEnumToMap<typeof groupType_Enum> = new Map([
-	['subtitles', 'Napisy'],
-	['lector', 'Lector']
 ]);
 
 export const seriesStatusEnum: PgEnumToMap<typeof seriesStatus_Enum> = new Map([

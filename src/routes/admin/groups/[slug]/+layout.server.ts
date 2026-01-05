@@ -7,8 +7,8 @@ import { DrizzleQueryError, eq } from 'drizzle-orm';
 
 export const load = (async ({ params, request }) => {
 	try {
-		let organization = await db.query.organization.findFirst({
-			where: eq(db.$schema.organization.slug, params.slug),
+		let organization = await db.query.group.findFirst({
+			where: eq(db.$schema.group.slug, params.slug),
 			with: {
 				invitations: true,
 				members: {

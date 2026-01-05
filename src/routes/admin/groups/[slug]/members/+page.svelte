@@ -18,9 +18,9 @@
 				perPage: 100
 			},
 			query: {
-				organizationId: data?.organization?.id ?? '',
+				groupId: data?.organization?.id ?? '',
 				searchName,
-				role: roleMap.keys().toArray().at(0)
+				role: roleMap.keys().toArray().at(0) as any
 			}
 		})
 	);
@@ -83,7 +83,7 @@
 			<input
 				class="hidden"
 				defaultChecked
-				{...memberForm.fields.organizationId.as('radio', data?.organization?.id ?? '')}
+				{...memberForm.fields.groupId.as('radio', data?.organization?.id ?? '')}
 				checked
 			/>
 			<Form.Combobox
@@ -101,7 +101,6 @@
 				placeholder="Nazwa członka"
 			/>
 			<Form.Combobox
-				multiple
 				field={memberForm.fields.role}
 				options={new SvelteMap(
 					rules.map((role) => [role, role.charAt(0).toUpperCase() + role.slice(1)])
