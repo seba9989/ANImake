@@ -6,7 +6,7 @@ import { error } from '@sveltejs/kit';
 import { createInsertSchema } from 'drizzle-arktype';
 import { DrizzleError, DrizzleQueryError } from 'drizzle-orm';
 
-const props = formScope.type(createInsertSchema(groupMember).omit("createdAt", "updateAt"));
+const props = formScope.type(createInsertSchema(groupMember).omit('createdAt', 'updateAt'));
 
 export const create = form(props, async ({ ...body }) => {
 	try {

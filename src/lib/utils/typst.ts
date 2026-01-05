@@ -8,7 +8,7 @@ export const formScope = scope({
 			...type.keywords.string.url,
 			optional: type("string.url | ''").pipe((s) => (s === '' ? undefined : s))
 		})
-	}),
+	})
 });
 
 export type Prettify<T> = {

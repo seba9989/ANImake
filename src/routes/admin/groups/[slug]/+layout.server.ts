@@ -35,5 +35,5 @@ export const load = (async ({ params, request }) => {
 		}
 	}
 
-	return {}
+	return {};
 }) satisfies LayoutServerLoad;

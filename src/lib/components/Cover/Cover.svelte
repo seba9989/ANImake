@@ -13,7 +13,7 @@
 </script>
 
 <a {href} class=" flex w-min flex-col gap-1 text-sm select-none">
-	<div class="relative aspect-37/53 h-55 overflow-hidden rounded-sm bg-base-300">
+	<div class="relative aspect-cover h-55 overflow-hidden rounded-sm bg-base-300">
 		<img
 			src={series.coverUrl}
 			alt={series.title}

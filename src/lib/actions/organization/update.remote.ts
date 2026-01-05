@@ -7,7 +7,7 @@ import { APIError } from 'better-auth';
 import { eq } from 'drizzle-orm';
 
 const props = formScope.type({
-    groupId: "string > 0",
+	groupId: 'string > 0',
 
 	name: 'string > 0',
 	slug: 'string > 0',
@@ -17,16 +17,16 @@ const props = formScope.type({
 	description: 'string.optional'
 });
 
-export const update = form(props, async ({groupId, ...body }) => {
+export const update = form(props, async ({ groupId, ...body }) => {
 	try {
-		await db.update(group).set(body).where(eq(group.id, groupId))
+		await db.update(group).set(body).where(eq(group.id, groupId));
 		// const t = await auth.api.updateOrganization({
-        //     body: {
-        //         data: body,
-        //         organizationId: organizationId
-        //     },
-        //     headers: getRequestEvent().request.headers
-        // })
+		//     body: {
+		//         data: body,
+		//         organizationId: organizationId
+		//     },
+		//     headers: getRequestEvent().request.headers
+		// })
 	} catch (e) {
 		if (e instanceof APIError) {
 			console.log(e.message);

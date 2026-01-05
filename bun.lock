@@ -6,6 +6,7 @@
       "name": "animake",
       "dependencies": {
         "@skeletonlabs/floating-ui-svelte": "^0.3.9",
+        "@splidejs/svelte-splide": "^0.2.9",
         "@urql/core": "^6.0.1",
         "arktype": "^2.1.29",
         "better-auth": "^1.4.6",
@@ -13,6 +14,7 @@
         "drizzle-arktype": "^0.1.3",
         "fuse.js": "^7.1.0",
         "gql.tada": "^1.9.0",
+        "keen-slider": "^6.8.6",
         "lucide-svelte": "^0.561.0",
         "postgres": "^3.4.7",
         "svelte-portal": "^2.2.1",
@@ -238,6 +240,10 @@
     "@rollup/rollup-win32-x64-msvc": ["@rollup/rollup-win32-x64-msvc@4.53.3", "", { "os": "win32", "cpu": "x64" }, "sha512-UhTd8u31dXadv0MopwGgNOBpUVROFKWVQgAg5N1ESyCz8AuBcMqm4AuTjrwgQKGDfoFuz02EuMRHQIw/frmYKQ=="],
 
     "@skeletonlabs/floating-ui-svelte": ["@skeletonlabs/floating-ui-svelte@0.3.9", "", { "dependencies": { "@floating-ui/dom": "^1.6.12", "@floating-ui/utils": "^0.2.8" }, "peerDependencies": { "svelte": "^5.0.0" } }, "sha512-YjGAqVVD54v2biXgbVeZKTj40Zc1I7hS62NTpF72UBFzKsFrYN8+odexBaHNZ/4ScPYLF1ChA0vp3NClo8To1Q=="],
+
+    "@splidejs/splide": ["@splidejs/splide@4.1.4", "", {}, "sha512-5I30evTJcAJQXt6vJ26g2xEkG+l1nXcpEw4xpKh0/FWQ8ozmAeTbtniVtVmz2sH1Es3vgfC4SS8B2X4o5JMptA=="],
+
+    "@splidejs/svelte-splide": ["@splidejs/svelte-splide@0.2.9", "", { "dependencies": { "@splidejs/splide": "^4.1.3" } }, "sha512-04ekJnDIJKEAhklKQMhkg4Yx0Ihtkk18eA9JeHPON0lDTngQxlOYdEYTJWH2UON45VxmVqoLHv04I++JphO36w=="],
 
     "@standard-schema/spec": ["@standard-schema/spec@1.0.0", "", {}, "sha512-m2bOd0f2RT9k8QJx1JN85cZYyH1RqFBdlwtkSlf4tBDYLCiiZnv1fIIwacK6cqwXavOydf0NPToMQgpKq+dVlA=="],
 
@@ -520,6 +526,8 @@
     "json-schema-traverse": ["json-schema-traverse@0.4.1", "", {}, "sha512-xbbCH5dCYU5T8LcEhhuh7HJ88HXuW3qsI3Y0zOZFKfZEHcpWiHU/Jxzk629Brsab/mMiHQti9wMP+845RPe3Vg=="],
 
     "json-stable-stringify-without-jsonify": ["json-stable-stringify-without-jsonify@1.0.1", "", {}, "sha512-Bdboy+l7tA3OGW6FjyFHWkP5LuByj1Tk33Ljyq0axyzdk9//JSi2u3fP1QSmd1KNwq6VOKYGlAu87CisVir6Pw=="],
+
+    "keen-slider": ["keen-slider@6.8.6", "", {}, "sha512-dcEQ7GDBpCjUQA8XZeWh3oBBLLmyn8aoeIQFGL/NTVkoEOsmlnXqA4QykUm/SncolAZYGsEk/PfUhLZ7mwMM2w=="],
 
     "keyv": ["keyv@4.5.4", "", { "dependencies": { "json-buffer": "3.0.1" } }, "sha512-oxVHkHR/EJf2CNXnWxRLW6mg7JyCCUcG0DtEGmL2ctUo1PNTin1PUil+r/+4r5MpVgC/fn1kjsx7mjSujKqIpw=="],
 

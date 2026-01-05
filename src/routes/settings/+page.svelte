@@ -5,7 +5,10 @@
 	let { data }: PageProps = $props();
 </script>
 
-<button class="btn" type="button" onclick={async () => {
-	console.log(await authClient.signOut());
-	
-}}>SingOut</button>
+<button
+	class="btn"
+	type="button"
+	onclick={async () => {
+		console.log(await authClient.signOut());
+	}}>SingOut</button
+>

@@ -1,5 +1,5 @@
-import { list } from "./list.remote";
+import { list } from './list.remote';
 
 export const user = {
-    list
-}
+	list
+};
