@@ -29,7 +29,7 @@
 <div class="">
 	<a
 		href={getUrl(query)}
-		class="mr-6 mb-4 flex items-end justify-between opacity-70 transition-opacity duration-100 hover:opacity-100"
+		class="mr-6 mb-2 flex items-end justify-between opacity-70 transition-opacity duration-100 hover:opacity-100"
 	>
 		<h1 class="text-xl">{listName}</h1>
 

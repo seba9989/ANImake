@@ -8,7 +8,9 @@
 			page: 1,
 			perPage: 5
 		},
-		query: {}
+		query: {
+			withBanner: true
+		}
 	});
 </script>
 

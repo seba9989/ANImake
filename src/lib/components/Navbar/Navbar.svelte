@@ -83,7 +83,9 @@
 </div>
 <div class="sm:contents hidden">
 	<div class="flex flex-col h-svh w-14 drop-shadow-lg gap-2">
-		<div class="flex justify-center w-full aspect-square items-center text-yellow-400">
+		<div
+			class="flex justify-center w-full aspect-square items-center text-yellow-400 drop-shadow-md"
+		>
 			<MoonStar size="28" />
 		</div>
 		<div class="grid grid-flow-row pr-2 gap-2">
