@@ -4,10 +4,8 @@ import { relations } from 'drizzle-orm';
 
 export const category = pgTable('category', {
 	id: uuid().defaultRandom().primaryKey(),
-	name: text().notNull(),
-	slug: text().notNull(),
-	description: text(),
-	nsfw: boolean().notNull()
+	title: text().notNull(),
+	slug: text().notNull()
 });
 
 export const category_Relations = relations(category, ({ many }) => ({

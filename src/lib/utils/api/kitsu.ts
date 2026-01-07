@@ -1,6 +1,37 @@
 import { type } from 'arktype';
 
-// Definicje pomocniczych typów
+// ============================================================================
+// SHARED TYPES
+// ============================================================================
+
+const Meta = type({
+	count: 'number'
+});
+
+const Links = type({
+	first: 'string',
+	last: 'string',
+	'next?': 'string',
+	'prev?': 'string'
+});
+
+const RelationshipLink = type({
+	self: 'string',
+	related: 'string'
+});
+
+const Relationship = type({
+	links: RelationshipLink,
+	'data?': {
+		type: 'string',
+		id: 'string'
+	}
+});
+
+// ============================================================================
+// IMAGE TYPES
+// ============================================================================
+
 const ImageDimensions = type({
 	width: 'number',
 	height: 'number'
@@ -32,6 +63,10 @@ const CoverImage = type({
 	meta: ImageMeta
 });
 
+// ============================================================================
+// ANIME TYPES
+// ============================================================================
+
 const Titles = type({
 	'en?': 'string',
 	en_jp: 'string',
@@ -59,21 +94,6 @@ const RatingFrequencies = type({
 	'18?': 'string',
 	'19?': 'string',
 	'20?': 'string'
-});
-
-const RelationshipLink = type({
-	self: 'string',
-	related: 'string'
-});
-
-const RelationshipData = type({
-	type: 'string',
-	id: 'string'
-});
-
-const Relationship = type({
-	links: RelationshipLink,
-	'data?': RelationshipData
 });
 
 const AnimeRelationships = type({
@@ -111,7 +131,7 @@ const AnimeAttributes = type({
 	favoritesCount: 'number',
 	startDate: 'string',
 	'endDate?': 'string | null',
-	nextRelease: 'null|string',
+	nextRelease: 'null | string',
 	popularityRank: 'number',
 	'ratingRank?': 'number | null',
 	ageRating: 'string',
@@ -142,6 +162,10 @@ const Anime = type({
 	relationships: AnimeRelationships
 });
 
+// ============================================================================
+// MAPPING TYPES
+// ============================================================================
+
 const MappingAttributes = type({
 	createdAt: 'string',
 	updatedAt: 'string',
@@ -152,7 +176,10 @@ const MappingAttributes = type({
 const MappingRelationships = type({
 	item: {
 		links: RelationshipLink,
-		data: RelationshipData
+		data: {
+			type: 'string',
+			id: 'string'
+		}
 	}
 });
 
@@ -166,22 +193,41 @@ const Mapping = type({
 	relationships: MappingRelationships
 });
 
-const Meta = type({
-	count: 'number'
+// ============================================================================
+// CATEGORY TYPES
+// ============================================================================
+
+const CategoryAttributes = type({
+	createdAt: 'string',
+	updatedAt: 'string',
+	title: 'string',
+	description: 'string',
+	totalMediaCount: 'number',
+	slug: 'string',
+	nsfw: 'boolean',
+	childCount: 'number'
 });
 
-const Links = type({
-	first: 'string',
-	last: 'string'
+const CategoryRelationships = type({
+	'parent?': Relationship,
+	'anime?': Relationship,
+	'drama?': Relationship,
+	'manga?': Relationship
 });
 
-// Główny typ odpowiedzi API
-export const KitsuMappingResponse = type({
-	data: [Mapping, '[]'],
-	included: [Anime, '[]'],
-	meta: Meta,
-	links: Links
+const Category = type({
+	id: 'string',
+	type: "'categories'",
+	links: {
+		self: 'string'
+	},
+	attributes: CategoryAttributes,
+	relationships: CategoryRelationships
 });
+
+// ============================================================================
+// MEDIA SCHEMA (for additional metadata)
+// ============================================================================
 
 export const MediaSchema = type({
 	seasonYear: 'number',
@@ -196,8 +242,35 @@ export const MediaSchema = type({
 		}).pipe(({ site, id }) =>
 			site === 'youtube' ? `https://www.youtube.com/watch?v=${id}` : null
 		),
-
 		'|',
 		'null'
 	]
 });
+
+// ============================================================================
+// RESPONSE TYPES
+// ============================================================================
+
+export const KitsuMappingResponse = type({
+	data: [Mapping, '[]'],
+	included: [Anime, '[]'],
+	meta: Meta,
+	links: Links
+});
+
+export const KitsuCategoriesResponse = type({
+	data: [Category, '[]'],
+	meta: Meta,
+	links: Links
+});
+
+// ============================================================================
+// EXPORTED TYPES
+// ============================================================================
+
+export type KitsuMappingResponse = typeof KitsuMappingResponse.infer;
+export type KitsuCategoriesResponse = typeof KitsuCategoriesResponse.infer;
+export type MediaSchema = typeof MediaSchema.infer;
+export type Anime = typeof Anime.infer;
+export type Mapping = typeof Mapping.infer;
+export type Category = typeof Category.infer;

@@ -10,7 +10,7 @@
 
 	let seriesList = $derived(
 		await series.list({
-			options: { page },
+			options: { page, perPage: 20 },
 			query: {}
 		})
 	);

@@ -25,3 +25,5 @@ export * from './watchHistory';
 
 export * from './group';
 export * from './groupMember';
+
+export * from "./episodeToGroup"

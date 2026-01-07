@@ -8,22 +8,7 @@ import { DrizzleQueryError, eq } from 'drizzle-orm';
 export const load = (async ({ params, request }) => {
 	try {
 		let organization = await db.query.group.findFirst({
-			where: eq(db.$schema.group.slug, params.slug),
-			with: {
-				invitations: true,
-				members: {
-					with: {
-						user: {
-							columns: {
-								id: true,
-								email: true,
-								name: true,
-								image: true
-							}
-						}
-					}
-				}
-			}
+			where: eq(db.$schema.group.slug, params.slug)
 		});
 
 		if (!organization) error(404, 'Organization not found');

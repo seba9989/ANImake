@@ -5,7 +5,7 @@
 	import Icon from '@iconify/svelte';
 
 	type Props = {
-		series: typeof seriesType.$inferSelect;
+		series: Pick<typeof seriesType.$inferSelect, 'title' | 'coverUrl' | 'releaseYear' | 'type'>;
 		href?: string;
 	};
 
