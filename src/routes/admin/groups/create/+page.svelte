@@ -13,15 +13,15 @@
 	$inspect(fields.allIssues());
 </script>
 
-<Form form={organization.create} class="flex flex-col gap-2 max-w-2xl bg-base-200 p-2 rounded-lg">
+<Form form={organization.create} class="flex max-w-2xl flex-col gap-2 rounded-lg bg-base-200 p-2">
 	<Form.Field field={fields.name} placeholder="Nazwa grupy" />
 	<div class="flex gap-2">
 		<Form.Field wrapperClass="grow" field={fields.slug} placeholder="Slug" />
-		<div class="dropdown dropdown-center dropdown-hover">
-			<div tabindex="0" role="button" class="btn btn-ghost btn-square text-info"><Info /></div>
+		<div class="dropdown-hover dropdown dropdown-center">
+			<div tabindex="0" role="button" class="btn btn-square text-info btn-ghost"><Info /></div>
 			<div
 				tabindex="-1"
-				class="dropdown-content menu bg-neutral rounded-md z-1 text-nowrap p-2 shadow-sm text-center mt-1"
+				class="dropdown-content menu z-1 mt-1 rounded-md bg-neutral p-2 text-center text-nowrap shadow-sm"
 			>
 				<span> zapis url pod jakim będzie można znaleźć grupę. </span>
 				<span> np. "jakaś_grupa" => "{page.url.origin}/jakaś_grupa" </span>

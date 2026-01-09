@@ -3,8 +3,12 @@
 	import Menu from '$lib/components/Menu';
 	import type { LayoutProps } from './$types';
 
-	let { data, children }: LayoutProps = $props();
-	const pathArray = $derived(page.url.pathname.split('/'));
+	let { data, params, children }: LayoutProps = $props();
+	const pathArray = $derived(
+		page.url.pathname.split('/').filter((v) => {
+			return v !== params.seriesId;
+		})
+	);
 </script>
 
 <div>

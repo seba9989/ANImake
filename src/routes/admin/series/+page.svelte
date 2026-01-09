@@ -16,10 +16,10 @@
 	);
 </script>
 
-<div class="bg-base-200 p-2 rounded-lg flex flex-col">
+<div class="flex flex-col rounded-lg bg-base-200 p-2">
 	<Form class="flex gap-2">
 		<Form.Field placeholder="Nazwa serii" wrapperClass="grow" />
-		<div class="divider divider-horizontal mx-1"></div>
+		<div class="divider mx-1 divider-horizontal"></div>
 		<a href="/admin/series/create" class="btn btn-secondary"> Stwórz nową </a>
 	</Form>
 	<div class="mr-auto">

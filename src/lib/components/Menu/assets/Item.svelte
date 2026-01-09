@@ -16,7 +16,7 @@
 <a
 	{href}
 	class={cn(
-		'transition duration-150 rounded-sm px-3 py-2',
+		'rounded-sm px-3 py-2 transition duration-150',
 		(!!regex ? regex.test(page.url.pathname) : page.url.pathname === href)
 			? 'bg-base-content text-base-100 drop-shadow-lg'
 			: 'hover:bg-[--alpha(var(--color-base-content)/15%)]'

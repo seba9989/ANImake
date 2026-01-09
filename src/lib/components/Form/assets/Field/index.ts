@@ -17,9 +17,10 @@ export type FieldProps = (
 	wrapperClass?: string;
 	class?: string;
 	placeholder?: string;
-	required?: boolean;
+	optional?: boolean;
 	value?: HTMLInputAttributes['value'];
 	children?: Snippet;
+	preChildren?: Snippet;
 };
 
 export default Object.assign(Field, { Secret });

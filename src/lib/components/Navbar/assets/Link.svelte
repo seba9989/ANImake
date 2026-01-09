@@ -14,9 +14,9 @@
 </script>
 
 {#if disable}
-	<button disabled class={['pl-2 rounded-r-md']}>
+	<button disabled class={['rounded-r-md pl-2']}>
 		<div class="tooltip tooltip-right" data-tip="Już wkrótce">
-			<div class={['aspect-square flex justify-center w-full items-center opacity-50']}>
+			<div class={['flex aspect-square w-full items-center justify-center opacity-50']}>
 				<Icon />
 			</div>
 		</div>
@@ -25,13 +25,13 @@
 	<a
 		{href}
 		class={cn(
-			'pl-2 rounded-r-md',
+			'rounded-r-md pl-2',
 			(!!regex ? regex.test(page.url.pathname) : page.url.pathname === href)
 				? 'bg-base-content text-base-100 drop-shadow-lg'
 				: 'hover:bg-[--alpha(var(--color-base-content)/15%)]'
 		)}
 	>
-		<div class={['aspect-square flex justify-center w-full items-center']}>
+		<div class={['flex aspect-square w-full items-center justify-center']}>
 			<Icon />
 		</div>
 	</a>

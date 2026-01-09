@@ -14,3 +14,9 @@ export const formScope = scope({
 export type Prettify<T> = {
 	[K in keyof T]: T[K];
 } & {};
+
+type ReplaceNull<T> = T extends null ? undefined : T;
+
+export type ReplaceNullInObject<T> = Prettify<{
+	[K in keyof T as T[K] extends never ? never : K]: ReplaceNull<T[K]>;
+}>;

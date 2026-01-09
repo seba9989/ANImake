@@ -51,7 +51,7 @@
 	$inspect(sliderIndex);
 </script>
 
-<div class="absolute top-0 right-0 h-100 w-screen -z-10">
+<div class="absolute top-0 right-0 -z-10 h-100 w-screen">
 	<Splide
 		bind:this={slider1}
 		class="h-full *:h-full"
@@ -76,7 +76,7 @@
 		{/each}
 	</Splide>
 </div>
-<div class="flex h-90 items-end px-4 mb-4">
+<div class="mb-4 flex h-90 items-end px-4">
 	<div class="flex flex-col gap-2">
 		<Splide
 			bind:this={slider2}
@@ -88,8 +88,8 @@
 		>
 			{#each seriesList as { title, type, releaseYear, season, description }}
 				<SplideSlide class="h-full *:h-full">
-					<div class="h-full flex">
-						<div class="flex flex-col gap-2 mt-auto">
+					<div class="flex h-full">
+						<div class="mt-auto flex flex-col gap-2">
 							<h1 class="mb-4 text-4xl font-bold">{title}</h1>
 							<div class="flex items-center text-sm">
 								<span>{seriesTypeEnum.get(type)}</span>
@@ -113,7 +113,7 @@
 			{/each}
 		</Splide>
 
-		<div class="flex gap-2 -mt-4">
+		<div class="-mt-4 flex gap-2">
 			<a href="/anime/{url.encode(seriesList[sliderIndex].title)}" class="btn w-fit btn-secondary">
 				<Icon icon="material-symbols:play-arrow" class="inline text-xl" />
 				Obejrzyj Teraz
@@ -130,7 +130,7 @@
 		</div>
 
 		{#if seriesList.length > 1}
-			<div class="flex mt-1 gap-2">
+			<div class="mt-1 flex gap-2">
 				{#each { length: seriesList.length }, i}
 					<div
 						class={cn(
@@ -142,12 +142,12 @@
 						)}
 					>
 						<div
-							class="h-1 bg-base-content opacity-100 row-start-1 transition-all duration-125"
+							class="row-start-1 h-1 bg-base-content opacity-100 transition-all duration-125"
 							style="width: {i == sliderIndex ? 2.5 * (elapsed / duration) : 0}rem"
 						></div>
 						<div
 							class={cn(
-								'h-1 bg-base-content rounded-2xl row-start-1 opacity-25 transition-all duration-100',
+								'row-start-1 h-1 rounded-2xl bg-base-content opacity-25 transition-all duration-100',
 								{
 									'w-10': i == sliderIndex,
 									'w-5': i != sliderIndex

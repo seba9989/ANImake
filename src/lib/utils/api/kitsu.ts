@@ -226,6 +226,53 @@ const Category = type({
 });
 
 // ============================================================================
+// EPISODE TYPES
+// ============================================================================
+
+const EpisodeTitles = type({
+	'en_jp?': 'string',
+	'en_us?': 'string',
+	'ja_jp?': 'string'
+});
+
+const EpisodeThumbnail = type({
+	original: 'string',
+	meta: {
+		dimensions: 'Record<string, unknown>'
+	}
+});
+
+const EpisodeAttributes = type({
+	createdAt: 'string',
+	updatedAt: 'string',
+	synopsis: 'string',
+	description: 'string',
+	titles: EpisodeTitles,
+	canonicalTitle: 'string',
+	seasonNumber: 'number',
+	number: 'number',
+	'relativeNumber?': 'number | null',
+	'airdate?': 'string | null',
+	'length?': 'number | null',
+	'thumbnail?': [EpisodeThumbnail, '|', 'null']
+});
+
+const EpisodeRelationships = type({
+	media: Relationship,
+	videos: Relationship
+});
+
+const Episode = type({
+	id: 'string',
+	type: "'episodes'",
+	links: {
+		self: 'string'
+	},
+	attributes: EpisodeAttributes,
+	relationships: EpisodeRelationships
+});
+
+// ============================================================================
 // MEDIA SCHEMA (for additional metadata)
 // ============================================================================
 
@@ -264,13 +311,21 @@ export const KitsuCategoriesResponse = type({
 	links: Links
 });
 
+export const KitsuEpisodesResponse = type({
+	data: [Episode, '[]'],
+	meta: Meta,
+	links: Links
+});
+
 // ============================================================================
 // EXPORTED TYPES
 // ============================================================================
 
 export type KitsuMappingResponse = typeof KitsuMappingResponse.infer;
 export type KitsuCategoriesResponse = typeof KitsuCategoriesResponse.infer;
+export type KitsuEpisodesResponse = typeof KitsuEpisodesResponse.infer;
 export type MediaSchema = typeof MediaSchema.infer;
 export type Anime = typeof Anime.infer;
 export type Mapping = typeof Mapping.infer;
 export type Category = typeof Category.infer;
+export type Episode = typeof Episode.infer;

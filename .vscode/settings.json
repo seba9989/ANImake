@@ -16,5 +16,6 @@
 			"password": "mysecretpassword",
 			"username": "root"
 		}
-	]
+	],
+	"prettier.configPath": "/home/seba9989/Code/ANImake/.prettierrc"
 }

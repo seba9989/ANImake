@@ -9,14 +9,14 @@
 </script>
 
 <div class="card-body gap-2 p-6">
-	<h2 class="card-title mx-auto">Witamy ponownie w HoshiAnime</h2>
-	<div class="flex flex-col h-full">
-		<Form class="grow flex flex-col justify-center" form={singIn}>
+	<h2 class="mx-auto card-title">Witamy ponownie w HoshiAnime</h2>
+	<div class="flex h-full flex-col">
+		<Form class="flex grow flex-col justify-center" form={singIn}>
 			<fieldset class="fieldset gap-4 *:w-full">
 				<Form.Field field={singIn.fields.email} placeholder="Email" />
 				<div>
 					<Form.Field.Secret field={singIn.fields._password} placeholder="Hasło" />
-					<div class="flex justify-between mt-1 items-center">
+					<div class="mt-1 flex items-center justify-between">
 						<Form.Checkbox field={singIn.fields.rememberMe} placeholder="Remember me" />
 						<!-- TODO: Dodać odzyskiwanie konta. -->
 						<a class="link link-info" href=".">Nie pamiętam hasła.</a>
@@ -34,7 +34,7 @@
 			<div class="tooltip" data-tip="Już wkrótce">
 				<a
 					href="/"
-					class="btn-disabled btn btn-square p-2 btn-neutral"
+					class="btn btn-disabled btn-square p-2 btn-neutral"
 					role="button"
 					aria-disabled="true"
 				>
@@ -44,7 +44,7 @@
 			<div class="tooltip" data-tip="Już wkrótce">
 				<a
 					href="/"
-					class="btn-disabled btn btn-square p-2 btn-neutral"
+					class="btn btn-disabled btn-square p-2 btn-neutral"
 					role="button"
 					aria-disabled="true"
 				>
@@ -54,7 +54,7 @@
 			<div class="tooltip" data-tip="Już wkrótce">
 				<a
 					href="/"
-					class="btn-disabled btn btn-square p-2 btn-neutral"
+					class="btn btn-disabled btn-square p-2 btn-neutral"
 					role="button"
 					aria-disabled="true"
 				>

@@ -9,8 +9,8 @@
 </script>
 
 <div class="card-body gap-2 p-6">
-	<h2 class="card-title mx-auto">Witamy w HoshiAnime</h2>
-	<Form class="flex flex-col h-full justify-center" form={singUp}>
+	<h2 class="mx-auto card-title">Witamy w HoshiAnime</h2>
+	<Form class="flex h-full flex-col justify-center" form={singUp}>
 		<fieldset class="fieldset gap-4 *:w-full">
 			<Form.Field field={singUp.fields.name} placeholder="Login" />
 			<Form.Field field={singUp.fields.email} placeholder="Emile" />

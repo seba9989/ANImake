@@ -4,6 +4,6 @@
 	const { children }: { children: Snippet } = $props();
 </script>
 
-<div class="grid w-1/4 max-w-3xs min-w-min gap-2 font-semibold bg-base-200 p-3 rounded-lg">
+<div class="grid w-1/4 max-w-3xs min-w-min gap-2 rounded-lg bg-base-200 p-3 font-semibold">
 	{@render children()}
 </div>

@@ -8,7 +8,7 @@
 		class?: string;
 		wrapperClass?: string;
 		placeholder?: string;
-		required?: boolean;
+		optional?: boolean;
 		value?: HTMLTextareaAttributes['value'];
 	};
 
@@ -17,22 +17,22 @@
 		class: className,
 		wrapperClass,
 		placeholder,
-		required = true,
+		optional = true,
 		value = $bindable()
 	}: Props = $props();
 
 	let issues = $derived(field?.issues());
 </script>
 
-<div class={cn(wrapperClass)}>
+<div class={cn('flex w-full flex-col gap-1', wrapperClass)}>
 	<textarea {...field?.as('text')} class={cn('textarea w-full', className)} {placeholder} bind:value
 	></textarea>
-	{#if !required}
-		<span class="badge badge-neutral badge-xs">Optional</span>
+	{#if optional}
+		<span class="ml-auto badge badge-xs badge-neutral">Optional</span>
 	{/if}
 	{#each issues as issue}
-		<p class="text-error visible mt-0.5">
-			<span class="status status-sm status-error mr-0.5"></span>
+		<p class="visible mt-0.5 text-error">
+			<span class="mr-0.5 status status-sm status-error"></span>
 			{issue.message}
 		</p>
 	{/each}

@@ -27,8 +27,8 @@
 	>
 		{@render children?.()}
 		{#each form?.fields.issues() as issue}
-			<p class="text-error visible mt-0.5">
-				<span class="status status-sm status-error mr-0.5"></span>
+			<p class="visible mt-0.5 text-error">
+				<span class="mr-0.5 status status-sm status-error"></span>
 				{issue.message}
 			</p>
 		{/each}
@@ -42,8 +42,8 @@
 	>
 		{@render children?.()}
 		{#each form?.fields.issues() as issue}
-			<p class="text-error visible mt-0.5">
-				<span class="status status-sm status-error mr-0.5"></span>
+			<p class="visible mt-0.5 text-error">
+				<span class="mr-0.5 status status-sm status-error"></span>
 				{issue.message}
 			</p>
 		{/each}

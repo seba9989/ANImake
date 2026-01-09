@@ -20,13 +20,13 @@
 	);
 </script>
 
-<div class="bg-base-200 p-2 rounded-lg flex flex-col gap-2">
+<div class="flex flex-col gap-2 rounded-lg bg-base-200 p-2">
 	<Form class="flex gap-2">
 		<Form.Field placeholder="Nazwa grupy" wrapperClass="grow" bind:value={searchName} />
-		<div class="divider divider-horizontal mx-1"></div>
+		<div class="divider mx-1 divider-horizontal"></div>
 		<a href="/admin/groups/create" class="btn btn-secondary"> Stwórz nową </a>
 	</Form>
-	<ul class="list bg-base-100 rounded-box shadow-md">
+	<ul class="list rounded-box bg-base-100 shadow-md">
 		{#each organizationList?.data as { name, slug, logoUrl, createdAt }}
 			{@const _createdAt = new Intl.DateTimeFormat('pl-PL').format(createdAt)}
 			<li class="list-row">
@@ -37,13 +37,13 @@
 						</div>
 					</div>
 				{:else}
-					<div class="h-full w-10 btn btn-square flex btn-disabled">
+					<div class="btn btn-disabled flex btn-square h-full w-10">
 						<FileX class="m-auto" />
 					</div>
 				{/if}
 				<div>
 					<div>{name}</div>
-					<div class="text-xs uppercase font-semibold opacity-60">Create at: {_createdAt}</div>
+					<div class="text-xs font-semibold uppercase opacity-60">Create at: {_createdAt}</div>
 				</div>
 				<a href="/groups/{slug}" class="btn btn-square btn-ghost">
 					<ExternalLink />

@@ -71,6 +71,7 @@ export const addMeta = async <T extends PgSelect, O extends typeof options.infer
 			};
 		}
 	} catch (e) {
+		console.log(e);
 		if (e instanceof DrizzleQueryError) {
 			error(404, e.message);
 		}

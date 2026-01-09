@@ -14,7 +14,7 @@ export const seriesToOrganization_Relations = relations(seriesToGroup, ({ one })
 		fields: [seriesToGroup.seriesId],
 		references: [series.id]
 	}),
-	organization: one(group, {
+	group: one(group, {
 		fields: [seriesToGroup.groupId],
 		references: [group.id]
 	})

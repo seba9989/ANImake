@@ -1,4 +1,4 @@
-import { create } from './create.remote';
+import { create } from './create';
 import { list } from './list.remote';
 
 export const series = {

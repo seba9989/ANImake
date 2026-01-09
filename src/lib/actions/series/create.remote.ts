@@ -1,15 +1,13 @@
 import { form } from '$app/server';
 import { db } from '$lib/server/db';
-import { series, category, seriesToCategory } from '$lib/server/db/schema';
+import { series, category, seriesToCategory, seriesRelation } from '$lib/server/db/schema';
 import { formScope } from '$lib/utils/typst';
 import { invalid, redirect } from '@sveltejs/kit';
 import { type } from 'arktype';
-import { createInsertSchema } from 'drizzle-arktype';
+import { createInsertSchema, createSelectSchema } from 'drizzle-arktype';
 import { DrizzleQueryError } from 'drizzle-orm';
 
 const Props = formScope.type({
-	categories: [createInsertSchema(category).omit('id'), '[]'],
-
 	seriesData: createInsertSchema(series, {
 		coverUrl: formScope.type('string.url'),
 
@@ -23,7 +21,9 @@ const Props = formScope.type({
 		releaseYear: type('string.numeric.parse')
 	})
 		.omit('id', 'updateAt')
-		.pipe(({ nsfw, ...obj }) => ({ ...obj, nsfw: !!nsfw }))
+		.pipe(({ nsfw, ...obj }) => ({ ...obj, nsfw: !!nsfw })),
+
+	categories: [createInsertSchema(category).omit('id'), '[]']
 });
 
 export const create = form(Props, async ({ categories, seriesData }, issue) => {
@@ -52,14 +52,12 @@ export const create = form(Props, async ({ categories, seriesData }, issue) => {
 				)
 		});
 
-		await db
-			.insert(seriesToCategory)
-			.values(
-				categoriesId_s.map(({ id }): typeof seriesToCategory.$inferInsert => ({
-					categoryId: id,
-					seriesId: seriesBD[0].id
-				}))
-			);
+		await db.insert(seriesToCategory).values(
+			categoriesId_s.map(({ id }): typeof seriesToCategory.$inferInsert => ({
+				categoryId: id,
+				seriesId: seriesBD[0].id
+			}))
+		);
 	} catch (e) {
 		if (e instanceof DrizzleQueryError) {
 			console.log(e.message);

@@ -3,6 +3,7 @@
 	import { seriesTypeEnum } from '$lib/utils/enums';
 	import { url } from '$lib/utils/url';
 	import Icon from '@iconify/svelte';
+	import Image from './assets/Image.svelte';
 
 	type Props = {
 		series: Pick<typeof seriesType.$inferSelect, 'title' | 'coverUrl' | 'releaseYear' | 'type'>;
@@ -13,13 +14,7 @@
 </script>
 
 <a {href} class=" flex w-min flex-col gap-1 text-sm select-none">
-	<div class="relative aspect-cover h-55 overflow-hidden rounded-sm bg-base-300">
-		<img
-			src={series.coverUrl}
-			alt={series.title}
-			class="absolute inset-0 h-full w-full object-cover"
-		/>
-	</div>
+	<Image cover={series} />
 
 	<h1 class="line-clamp-2 font-bold">
 		{series.title}

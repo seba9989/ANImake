@@ -22,8 +22,9 @@
 	</div>
 
 	{#snippet pending()}
-		<div class="h-svh w-svw flex bg-base-300" out:fade>
-			<LoaderCircle class="m-auto animate-spin duration-1200" size="48" />
+		<div class="flex h-svh w-svw bg-base-300" out:fade>
+			<!-- <LoaderCircle class="m-auto animate-spin duration-1200" size="48" /> -->
+			<span class="loading m-auto loading-xl loading-spinner"></span>
 		</div>
 	{/snippet}
 </svelte:boundary>

@@ -10,7 +10,7 @@
 </script>
 
 <div class="grid max-w-2xl gap-2">
-	<Form form={organization.update} class="flex flex-col gap-2 bg-base-200 p-2 rounded-lg">
+	<Form form={organization.update} class="flex flex-col gap-2 rounded-lg bg-base-200 p-2">
 		<Form.Field field={fields.name} placeholder="Nazwa grupy" value={org?.name} />
 		<Form.Field field={fields.slug} placeholder="Slug" value={org?.slug} />
 		<Form.Field
