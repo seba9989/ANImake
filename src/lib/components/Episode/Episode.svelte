@@ -65,12 +65,16 @@
 
 			<div class="flex h-full flex-col gap-2 p-4">
 				{#each groups as groupId}
-					{@const group = await organization.getById(groupId)}
-					<a
+					{@const group = await organization.get.byId(groupId)}
+					{#if group}
+						<a href="{page.url.href}/{episode.number}?group={group?.slug}">
+							<Banner.Group class="aspect-video h-full" {group} />
+						</a>
+					{/if}
+					<!-- <a
 						href="{page.url.href}/{episode.number}?group={group?.slug}"
 						class="m-auto flex h-28 w-full overflow-hidden rounded-lg bg-base-300"
 					>
-						<Banner.Group class="aspect-video h-full" src={group?.bannerUrl} />
 						<div class="m-2 ml-6 flex flex-col">
 							<div class="flex items-center justify-between gap-2">
 								<h3 class="text-lg font-semibold">{group?.name}</h3>
@@ -78,7 +82,7 @@
 
 							<p class=" line-clamp-2 opacity-50">{group?.description}</p>
 						</div>
-					</a>
+					</a> -->
 				{/each}
 			</div>
 		</div>

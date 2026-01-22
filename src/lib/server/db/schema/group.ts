@@ -14,7 +14,7 @@ export const group = pgTable('group', {
 	createdAt: timestamp().defaultNow().notNull(),
 	updateAt: timestamp()
 		.defaultNow()
-		.$onUpdate(() => sql`now()`)
+		.$onUpdate(() => new Date())
 		.notNull()
 });
 

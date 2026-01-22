@@ -1,5 +1,5 @@
 import { create } from './create.remote';
-import { getById } from './getById.remote';
+import { get } from './get';
 import { list } from './list.remote';
 import { member } from './member';
 import { update } from './update.remote';
@@ -11,5 +11,5 @@ export const organization = {
 
 	member,
 
-	getById
+	get
 };

@@ -3,6 +3,7 @@
 	import { organization } from '$lib/actions/organization';
 	import { ExternalLink, FileX, SquarePen } from 'lucide-svelte';
 	import Form from '$lib/components/Form';
+	import Banner from '$lib/components/Banner';
 
 	let { data }: PageProps = $props();
 
@@ -27,10 +28,10 @@
 		<a href="/admin/groups/create" class="btn btn-secondary"> Stwórz nową </a>
 	</Form>
 	<ul class="list rounded-box bg-base-100 shadow-md">
-		{#each organizationList?.data as { name, slug, logoUrl, createdAt }}
-			{@const _createdAt = new Intl.DateTimeFormat('pl-PL').format(createdAt)}
-			<li class="list-row">
-				{#if logoUrl}
+		{#each organizationList?.data as group}
+			{@const _createdAt = new Intl.DateTimeFormat('pl-PL').format(group.createdAt)}
+			<li class="list-row grid-cols-[1fr_auto_auto]">
+				<!-- {#if logoUrl}
 					<div class="avatar">
 						<div class="w-10 rounded">
 							<img src={logoUrl} alt="" />
@@ -40,15 +41,15 @@
 					<div class="btn btn-disabled flex btn-square h-full w-10">
 						<FileX class="m-auto" />
 					</div>
-				{/if}
-				<div>
-					<div>{name}</div>
-					<div class="text-xs font-semibold uppercase opacity-60">Create at: {_createdAt}</div>
+				{/if} -->
+				<div class="w-full max-w-3xl">
+					<Banner.Group {group} />
+					<div class="ml-4 text-xs font-semibold uppercase opacity-60">Create at: {_createdAt}</div>
 				</div>
-				<a href="/groups/{slug}" class="btn btn-square btn-ghost">
+				<a href="/groups/{group.slug}" class="btn btn-square btn-ghost">
 					<ExternalLink />
 				</a>
-				<a href="/admin/groups/{slug}" class="btn btn-square btn-ghost">
+				<a href="/admin/groups/{group.slug}" class="btn btn-square btn-ghost">
 					<SquarePen />
 				</a>
 			</li>

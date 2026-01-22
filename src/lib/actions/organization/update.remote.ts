@@ -1,5 +1,4 @@
-import { form, getRequestEvent } from '$app/server';
-import { auth } from '$lib/server/auth';
+import { form } from '$app/server';
 import { db } from '$lib/server/db';
 import { group } from '$lib/server/db/schema';
 import { formScope } from '$lib/utils/typst';
@@ -11,22 +10,15 @@ const props = formScope.type({
 
 	name: 'string > 0',
 	slug: 'string > 0',
-	logo: 'string.url.optional',
-	banner: 'string.url.optional',
-	discord: 'string.url.optional',
+	logoUrl: 'string.url.optional',
+	bannerUrl: 'string.url.optional',
+	discordUrl: 'string.url.optional',
 	description: 'string.optional'
 });
 
 export const update = form(props, async ({ groupId, ...body }) => {
 	try {
 		await db.update(group).set(body).where(eq(group.id, groupId));
-		// const t = await auth.api.updateOrganization({
-		//     body: {
-		//         data: body,
-		//         organizationId: organizationId
-		//     },
-		//     headers: getRequestEvent().request.headers
-		// })
 	} catch (e) {
 		if (e instanceof APIError) {
 			console.log(e.message);
