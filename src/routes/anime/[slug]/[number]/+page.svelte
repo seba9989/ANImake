@@ -32,14 +32,7 @@
 			{#if player}
 				<!-- Dodać Player -->
 			{:else if legacyPlayerVideo}
-				<iframe
-					sandbox="allow-scripts allow-same-origin allow-presentation"
-					allow="encrypted-media"
-					referrerPolicy="no-referrer-when-downgrade"
-					title="Player"
-					src={legacyPlayerVideo?.url}
-					class=" h-full w-full"
-				></iframe>
+				<iframe title="Player" src={legacyPlayerVideo?.url} class=" h-full w-full"></iframe>
 			{:else}
 				<div class="flex h-full items-center justify-center text-3xl font-bold">
 					Odcinek nie aktywny
