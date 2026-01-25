@@ -60,7 +60,7 @@
 				]
 	);
 
-	$inspect(user?.role);
+	// $inspect(user?.role);
 </script>
 
 <div class="hidden max-sm:contents">
@@ -82,7 +82,7 @@
 	</div>
 </div>
 <div class="hidden sm:contents">
-	<div class="flex h-svh w-14 flex-col gap-2 drop-shadow-lg">
+	<div class="sticky top-0 flex h-svh w-14 flex-col gap-2 drop-shadow-lg">
 		<div
 			class="flex aspect-square w-full items-center justify-center text-yellow-400 drop-shadow-md"
 		>

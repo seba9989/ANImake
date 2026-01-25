@@ -19,7 +19,7 @@
 
 	let episodeSortOption_s = [
 		{
-			param: undefined,
+			param: 'episodes',
 			text: 'Odcinkach'
 		},
 		{
@@ -30,7 +30,7 @@
 
 	const searchParams = useSearchParams(
 		type({
-			sortBy: [[type.enumerated('groups', 'episodes'), '|', 'undefined'], '=', undefined],
+			sortBy: [type.enumerated('groups', 'episodes'), '=', 'episodes'],
 			page: 'number = 1'
 		}),
 		{
@@ -39,25 +39,23 @@
 		}
 	);
 
-	let episodesListPromise = $derived.by(() => {
-		if (searchParams.page) {
-			return episode.list({
-				options: {
-					page: searchParams.page
-				},
-				query: {
-					seriesId: data.seriesData.id,
-					with: {
-						groups: true
-					}
+	let episodesList = $derived(
+		await episode.list({
+			options: {
+				page: searchParams.page
+			},
+			query: {
+				seriesId: data.seriesData.id,
+				with: {
+					groups: true
 				}
-			});
-		}
-	});
+			}
+		})
+	);
 
-	let episodesList = $derived(await episodesListPromise);
+	// let episodesList = $derived(await episodesListPromise);
 
-	$inspect(episodesList?.data);
+	// $inspect(episodesList?.data);
 </script>
 
 <Banner src={data.seriesData.bannerUrl} />
@@ -94,7 +92,7 @@
 
 	<div class="flex items-center justify-between">
 		<div class="flex flex-wrap items-center gap-2">
-			<h3 class="text-2xl font-bold text-nowrap">Sortuj po:</h3>
+			<!-- <h3 class="text-2xl font-bold text-nowrap">Sortuj po:</h3>
 			<div role="tablist" class="tabs-box tabs">
 				{#each episodeSortOption_s as { param, text }}
 					<button
@@ -107,7 +105,7 @@
 						{text}
 					</button>
 				{/each}
-			</div>
+			</div> -->
 		</div>
 		{#if episodesList}
 			<Pages metadata={episodesList.metadata} bind:value={searchParams.page} />
@@ -117,8 +115,8 @@
 		{#if searchParams.sortBy === 'groups'}
 			<!-- TODO: Dodać sortowanie po grupach -->
 			<div>TODO: Dodać sortowanie po grupach</div>
-		{:else if episodesList}
-			{#each episodesList.data as { episode, groups }}
+		{:else if searchParams.sortBy === 'episodes'}
+			{#each episodesList?.data as { episode, groups }}
 				<Episode {episode} {groups} />
 			{/each}
 		{/if}

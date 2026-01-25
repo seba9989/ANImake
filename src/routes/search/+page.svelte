@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { useSearchParams } from 'runed/kit';
 	import type { PageProps } from './$types';
-	import { type } from 'arktype';
 	import { seriesSeasonEnum, seriesTypeEnum } from '$lib/utils/enums';
 	import { organization } from '$lib/actions/organization';
 	import Form from '$lib/components/Form';
@@ -11,24 +10,11 @@
 
 	import { watch } from 'runed';
 	import Cover from '$lib/components/Cover/Cover.svelte';
+	import { SeriesSearchParams } from './paramsSchema';
 
 	let { data }: PageProps = $props();
 
-	const params = useSearchParams(
-		type({
-			title: ['string', '=', ''],
-			year: ['string[] | undefined', '=', undefined],
-			season: [
-				[type.enumerated(...seriesSeasonEnum.keys()).array(), '|', 'undefined'],
-				'=',
-				undefined
-			],
-			type: [[type.enumerated(...seriesTypeEnum.keys()).array(), '|', 'undefined'], '=', undefined],
-			group: ['string[] | undefined', '=', undefined],
-
-			page: ['number', '=', 1]
-		})
-	);
+	const params = useSearchParams(SeriesSearchParams);
 
 	class EnumParams {
 		maps: Partial<Record<keyof typeof params, SvelteMap<string, string>>> = $state({});
@@ -91,8 +77,6 @@
 			}
 		})
 	);
-
-	console.log(params.title);
 </script>
 
 <div class="flex flex-col gap-12 px-4 py-1">

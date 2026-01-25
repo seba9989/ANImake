@@ -9,7 +9,7 @@
 			perPage: 5
 		},
 		query: {
-			withBanner: true
+			hasBanner: true
 		}
 	});
 </script>
@@ -18,4 +18,4 @@
 	<Hero seriesList={seriesList.data} />
 {/if}
 
-<SeriesList listName="test" />
+<SeriesList group_s={['anime_watch']} listName="AnimeWatch" />

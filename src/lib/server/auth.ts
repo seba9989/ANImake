@@ -1,15 +1,16 @@
 import { betterAuth } from 'better-auth';
 import { drizzleAdapter } from 'better-auth/adapters/drizzle';
 import { db } from './db';
-import { admin, organization, twoFactor, username } from 'better-auth/plugins';
+import { admin, twoFactor } from 'better-auth/plugins';
 import { sveltekitCookies } from 'better-auth/svelte-kit';
 import { getRequestEvent } from '$app/server';
+import { BETTER_AUTH_SECRET } from '$env/static/private';
 
 export const auth = betterAuth({
 	database: drizzleAdapter(db, {
 		provider: 'pg'
 	}),
-
+	secret: BETTER_AUTH_SECRET,
 	emailAndPassword: {
 		enabled: true
 	},

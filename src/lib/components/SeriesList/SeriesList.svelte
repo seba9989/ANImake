@@ -3,6 +3,8 @@
 	import { Splide, SplideSlide } from '@splidejs/svelte-splide';
 	import Cover from '../Cover/Cover.svelte';
 	import '@splidejs/svelte-splide/css/core';
+	import { page } from '$app/state';
+	import { SeriesSearchParams } from '../../../routes/search/paramsSchema';
 
 	type seriesQuery = Parameters<typeof series.list>[0]['query'];
 	type Props = {
@@ -12,7 +14,25 @@
 	const { listName, ...query }: Props = $props();
 
 	const getUrl = (query: seriesQuery): string => {
-		return '';
+		const url = new URL(page.url.origin + '/search');
+
+		if (query)
+			Object.entries({
+				title: query.searchTitle,
+
+				year: query.releaseYear_s?.map((v) => String(v)),
+				season: query.season_s,
+				type: query.type_s,
+				group: query.group_s
+			} satisfies typeof SeriesSearchParams.inferIn).forEach(([key, v]) => {
+				if (v) {
+					const value = JSON.stringify(v);
+
+					url.searchParams.set(key, value ?? '');
+				}
+			});
+
+		return url.toString();
 	};
 
 	let seriesList = $derived(
@@ -21,7 +41,7 @@
 				page: 1,
 				perPage: 25
 			},
-			query: {}
+			query
 		})
 	);
 </script>
