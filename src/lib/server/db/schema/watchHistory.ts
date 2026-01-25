@@ -1,19 +1,23 @@
 import { source, user } from './index';
 import { relations } from 'drizzle-orm';
-import { numeric, pgTable, text, uuid } from 'drizzle-orm/pg-core';
+import { numeric, pgTable, primaryKey, text, uuid } from 'drizzle-orm/pg-core';
 
-export const watchHistory = pgTable('watch_history', {
-	// System
-	userId: text()
-		.references(() => user.id, { onUpdate: 'cascade' })
-		.notNull(),
-	sourceId: uuid()
-		.references(() => source.id, { onUpdate: 'cascade' })
-		.notNull(),
+export const watchHistory = pgTable(
+	'watch_history',
+	{
+		// System
+		userId: text()
+			.references(() => user.id, { onUpdate: 'cascade' })
+			.notNull(),
+		sourceId: uuid()
+			.references(() => source.id, { onUpdate: 'cascade' })
+			.notNull(),
 
-	// Required
-	watchTime: numeric({ precision: 5, scale: 2 }).notNull()
-});
+		// Required
+		watchTime: numeric({ precision: 5, scale: 2 }).notNull()
+	},
+	(t) => [primaryKey({ columns: [t.userId, t.sourceId] })]
+);
 export const watchHistory_Relations = relations(watchHistory, ({ one }) => ({
 	user: one(user, {
 		fields: [watchHistory.userId],

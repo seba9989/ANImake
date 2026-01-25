@@ -61,5 +61,5 @@
 </Form> -->
 
 <div class="flex flex-col gap-2 rounded-lg bg-base-200 p-2">
-	<a class="btn btn-secondary" href="../../">Skip</a>
+	<a class="btn btn-secondary" href="episodes">Skip</a>
 </div>
