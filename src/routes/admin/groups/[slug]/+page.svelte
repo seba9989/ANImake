@@ -31,7 +31,7 @@
 			value={org?.description}
 			optional
 		/>
-		<button class="btn btn-secondary" {...organization.update.buttonProps}>Zaktualizuj</button>
+		<button class="btn btn-secondary">Zaktualizuj</button>
 	</Form>
 	<div class="grid grid-flow-col gap-2">
 		<a class="btn btn-accent" href="{page.url.href}/members">Członkowie</a>

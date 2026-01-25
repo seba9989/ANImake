@@ -52,7 +52,8 @@ export const addMeta = async <T extends PgSelect, O extends typeof options.infer
 				}
 			};
 		} else {
-			const count = await db.$count(qb);
+			const count = 1;
+			await db.$count(qb.as('c'));
 
 			const dbResponse = await qb
 				.limit(options.perPage)

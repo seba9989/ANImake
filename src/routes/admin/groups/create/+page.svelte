@@ -29,15 +29,10 @@
 		</div>
 	</div>
 
-	<Form.Field required={false} field={fields.logoUrl} placeholder="Logo URL" />
-	<Form.Field required={false} field={fields.bannerUrl} placeholder="Banner URL" />
-	<Form.Field required={false} field={fields.discordUrl} placeholder="Discord URL" />
-	<Form.Textarea
-		field={fields.description}
-		placeholder="Opis grupy"
-		class="w-full"
-		required={false}
-	/>
+	<Form.Field optional field={fields.logoUrl} placeholder="Logo URL" />
+	<Form.Field optional field={fields.bannerUrl} placeholder="Banner URL" />
+	<Form.Field optional field={fields.discordUrl} placeholder="Discord URL" />
+	<Form.Textarea optional field={fields.description} placeholder="Opis grupy" class="w-full" />
 	<!-- <Form.Field field={fields.description} placeholder="Opi" /> -->
 
 	<button class="btn btn-secondary" type="submit">Stwórz</button>
