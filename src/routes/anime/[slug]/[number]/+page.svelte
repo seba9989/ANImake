@@ -6,6 +6,8 @@
 	import { cn } from '$lib/utils/cn';
 	import Banner from '$lib/components/Banner';
 	import { organization } from '$lib/actions/organization';
+	import { afterNavigate, goto, onNavigate } from '$app/navigation';
+	import { onMount } from 'svelte';
 
 	let { data }: PageProps = $props();
 
@@ -19,11 +21,23 @@
 		next
 	} = $derived(data);
 
-	$inspect(player);
+	$inspect(legacyPlayer_s);
 
-	const legacyPlayerVideo = $derived(legacyPlayer_s.find(({ type }) => type === 'video'));
+	let legacyPlayerVideoUrl = $state({
+		loading: false,
+		url: legacyPlayer_s.find(({ type }) => type === 'video')?.url
+	});
 
 	const group = $derived(await organization.get.bySlug(page.url.searchParams.get('group') ?? ''));
+
+	afterNavigate(async () => {
+		legacyPlayerVideoUrl.loading = true;
+		await new Promise((r) => setTimeout(r, 500));
+		legacyPlayerVideoUrl = {
+			loading: false,
+			url: legacyPlayer_s.find(({ type }) => type === 'video')?.url
+		};
+	});
 </script>
 
 <div class="grid grid-cols-[2fr_1fr] gap-4 p-4 pl-0">
@@ -31,8 +45,15 @@
 		<div class="aspect-video w-full overflow-hidden rounded-lg bg-base-300">
 			{#if player}
 				<!-- Dodać Player -->
-			{:else if legacyPlayerVideo}
-				<iframe title="Player" src={legacyPlayerVideo?.url} class=" h-full w-full"></iframe>
+			{:else if legacyPlayerVideoUrl}
+				{#if legacyPlayerVideoUrl.loading}
+					<div class="flex h-full w-full">
+						<!-- <LoaderCircle class="m-auto animate-spin duration-1200" size="48" /> -->
+						<span class="loading m-auto loading-xl loading-spinner"></span>
+					</div>
+				{:else}
+					<iframe title="Player" src={legacyPlayerVideoUrl.url} class="h-full w-full"></iframe>
+				{/if}
 			{:else}
 				<div class="flex h-full items-center justify-center text-3xl font-bold">
 					Odcinek nie aktywny

@@ -18,7 +18,7 @@ export const list = query(Props, async ({ options, query }): Resp => {
 
 	do {
 		const kitsuResp = await fetch(
-			`https://kitsu.io/api/edge/anime/${query.kitsuId}/episodes?page[limit]=20&page[offset]=${page}`
+			`https://kitsu.io/api/edge/anime/${query.kitsuId}/episodes?page[limit]=20&page[offset]=${page*20}`
 		);
 
 		const kitsuData = KitsuEpisodesResponse(await kitsuResp.json());
@@ -34,7 +34,7 @@ export const list = query(Props, async ({ options, query }): Resp => {
 		}
 
 		page++;
-	} while (page < pageCount);
+	} while (page <= pageCount);
 
 	console.log(pageCount);
 
