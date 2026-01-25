@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { page } from '$app/state';
 	import type { PageProps } from './$types';
 
 	let { data }: PageProps = $props();
@@ -61,5 +62,5 @@
 </Form> -->
 
 <div class="flex flex-col gap-2 rounded-lg bg-base-200 p-2">
-	<a class="btn btn-secondary" href="episodes">Skip</a>
+	<a class="btn btn-secondary" href="episodes{page.url.search}">Skip</a>
 </div>
