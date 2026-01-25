@@ -1,3 +1,0 @@
-providers = ["node"]
-[start]
-cmd = "bun run ./build"
