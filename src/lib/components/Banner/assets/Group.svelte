@@ -23,7 +23,7 @@
 
 <div class="m-auto flex h-28 w-full overflow-hidden rounded-lg bg-base-300">
 	<div
-		class={cn('bg-cover', className)}
+		class={cn('aspect-video h-full grow bg-cover', className)}
 		style=" background-image: url({group?.bannerUrl ?? defaultBanner})"
 	>
 		<div class="h-full w-full bg-linear-to-l from-base-300 from-0% backdrop-brightness-90"></div>
