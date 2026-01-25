@@ -13,7 +13,7 @@ export const db = Object.assign(drizzle(client, { schema }), {
 	$schema: schema
 });
 
-await db.execute(sql`CREATE EXTENSION IF NOT EXISTS pg_trgm;`);
+// await db.execute(sql`CREATE EXTENSION IF NOT EXISTS pg_trgm;`);
 
 export const search = (
 	column: Column | SQL.Aliased | SQL,

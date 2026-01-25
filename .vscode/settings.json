@@ -15,6 +15,14 @@
 			"database": "local",
 			"password": "mysecretpassword",
 			"username": "root"
+		},
+		{
+			"ssh": "Disabled",
+			"previewLimit": 50,
+			"server": "localhost",
+			"driver": "PostgreSQL",
+			"name": "prod",
+			"connectString": "admin:admin@animake-prod:5432/AniMake"
 		}
 	],
 	"prettier.configPath": "/home/seba9989/Code/ANImake/.prettierrc"
