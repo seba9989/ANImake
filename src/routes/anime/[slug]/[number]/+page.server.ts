@@ -49,7 +49,7 @@ export const load = (async ({ url, params, parent }) => {
 		.innerJoin(series, eq(episode.seriesId, series.id))
 		.innerJoin(episodeToGroup, eq(episodeToGroup.episodeId, episode.id))
 		.innerJoin(group, eq(episodeToGroup.groupId, group.id))
-		.where(and(eq(series.title, params.slug), eq(group.slug, searchParams.group)))
+		.where(and(eq(series.title, urlParser.decode(params.slug)), eq(group.slug, searchParams.group)))
 		.orderBy(...sortTextAsNumber(episode.number));
 
 	const previous = await db
