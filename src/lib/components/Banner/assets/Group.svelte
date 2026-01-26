@@ -28,7 +28,7 @@
 	>
 		<div class="h-full w-full bg-linear-to-l from-base-300 from-0% backdrop-brightness-90"></div>
 	</div>
-	<div class="m-3 ml-6 flex flex-col">
+	<div class="m-3 ml-6 flex w-1/2 flex-col">
 		<div class="flex items-center justify-between gap-2">
 			<img class="h-5 text-lg font-semibold" src={group?.logoUrl} alt={group.name} />
 

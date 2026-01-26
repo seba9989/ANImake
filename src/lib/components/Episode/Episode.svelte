@@ -6,14 +6,16 @@
 	import { organization } from '$lib/actions/organization';
 	import Icon from '@iconify/svelte';
 	import { page } from '$app/state';
+	import { goto } from '$app/navigation';
 
 	type Props = {
 		episode: typeof episodeTable.$inferInsert;
 		groups?: (typeof episodeToGroup.$inferSelect.groupId)[];
 		bannerUrl?: string;
+		href?: string;
 	};
 
-	const { episode, groups, bannerUrl }: Props = $props();
+	const { episode, groups, bannerUrl, href }: Props = $props();
 
 	const { number, title, description, coverUrl, duration } = $derived(episode);
 
@@ -24,7 +26,13 @@
 
 <button
 	class="z-20 flex h-28 cursor-pointer overflow-hidden rounded-md bg-base-300 transition-transform select-none hover:scale-102"
-	onclick={() => dialog?.showModal()}
+	onclick={() => {
+		if (href) {
+			goto(href);
+		} else {
+			dialog?.showModal();
+		}
+	}}
 >
 	<div
 		class="relative aspect-video h-full bg-cover"
