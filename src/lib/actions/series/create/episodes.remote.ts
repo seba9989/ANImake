@@ -18,8 +18,8 @@ const Props = formScope.type({
 			title: 'string',
 			number: 'string',
 			duration: 'string.numeric.parse',
-			'coverUrl?': 'string',
-			'description?': 'string'
+			'coverUrl?': 'string.optional',
+			'description?': 'string.optional'
 		}),
 		'[]'
 	]

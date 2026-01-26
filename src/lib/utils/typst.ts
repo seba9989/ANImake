@@ -3,6 +3,7 @@ import { scope, type } from 'arktype';
 export const formScope = scope({
 	string: type.module({
 		...type.keywords.string,
+		root: type('string > 0'),
 		optional: type('string').pipe((s) => (s === '' ? undefined : s)),
 		url: type.module({
 			...type.keywords.string.url,

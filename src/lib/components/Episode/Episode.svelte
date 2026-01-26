@@ -7,6 +7,7 @@
 	import Icon from '@iconify/svelte';
 	import { page } from '$app/state';
 	import { goto } from '$app/navigation';
+	import { series } from '$lib/actions/series';
 
 	type Props = {
 		episode: typeof episodeTable.$inferInsert;
@@ -17,11 +18,19 @@
 
 	const { episode, groups, bannerUrl, href }: Props = $props();
 
-	const { number, title, description, coverUrl, duration } = $derived(episode);
+	const { number, title, description, duration } = $derived(episode);
 
 	let dialog: HTMLDialogElement | undefined = $state();
 
-	$inspect(groups);
+	let coverUrl: Promise<string> = $derived.by(async () => {
+		if (episode.coverUrl) return episode.coverUrl;
+
+		const seriesData = await series.get.byId(episode.seriesId);
+
+		if (seriesData?.bannerUrl) return seriesData.bannerUrl;
+
+		return 'https://img1.ak.crunchyroll.com/i/spire4-tmb/d80b3fbce742e6deb4d2caf37d08ca6e1395451246_full.jpg';
+	});
 </script>
 
 <button
@@ -36,8 +45,7 @@
 >
 	<div
 		class="relative aspect-video h-full bg-cover"
-		style="background-image: url({coverUrl ??
-			'https://img1.ak.crunchyroll.com/i/spire4-tmb/d80b3fbce742e6deb4d2caf37d08ca6e1395451246_full.jpg'});"
+		style="background-image: url({await coverUrl});"
 	>
 		<div
 			class="absolute right-0 bottom-0 m-1 rounded-lg bg-[color-mix(in_hsl,var(--color-base-300),transparent_40%)] px-1.5 text-sm font-semibold"

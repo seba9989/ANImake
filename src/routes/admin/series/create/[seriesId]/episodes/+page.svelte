@@ -30,6 +30,9 @@
 	let episodeList: Partial<
 		NonNullable<Awaited<ReturnType<typeof api.episodes.list>>>['data'][number]
 	>[] = $state([]);
+
+	const seriesData = $derived(await series.get.byId(params.seriesId));
+	$inspect(seriesData);
 </script>
 
 <Form form={series.create.episodes} class="flex flex-col gap-2 rounded-lg bg-base-200 p-2">
@@ -37,10 +40,13 @@
 
 	<!-- Episodes -->
 	{#each episodeList as episode, i}
+		{@const coverUrl = fields.episodes[i].coverUrl.value()}
 		<div class="flex items-center gap-2">
 			<div
 				class="aspect-video h-45 bg-cover bg-center"
-				style="background-image: url({fields.episodes[i].coverUrl.value()});"
+				style="background-image: url({coverUrl?.length > 0
+					? fields.episodes[i].coverUrl.value()
+					: seriesData?.bannerUrl});"
 			></div>
 			<div class="grid grow gap-2">
 				<Form.Field

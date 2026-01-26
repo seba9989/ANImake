@@ -245,10 +245,10 @@ const EpisodeThumbnail = type({
 const EpisodeAttributes = type({
 	createdAt: 'string',
 	updatedAt: 'string',
-	synopsis: 'string',
-	description: 'string',
+	synopsis: 'string | null',
+	description: 'string | null',
 	titles: EpisodeTitles,
-	canonicalTitle: 'string',
+	canonicalTitle: 'string | null',
 	seasonNumber: 'number',
 	number: 'number',
 	'relativeNumber?': 'number | null',

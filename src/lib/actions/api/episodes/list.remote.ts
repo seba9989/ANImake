@@ -18,7 +18,7 @@ export const list = query(Props, async ({ options, query }): Resp => {
 
 	do {
 		const kitsuResp = await fetch(
-			`https://kitsu.io/api/edge/anime/${query.kitsuId}/episodes?page[limit]=20&page[offset]=${page*20}`
+			`https://kitsu.io/api/edge/anime/${query.kitsuId}/episodes?page[limit]=20&page[offset]=${page * 20}`
 		);
 
 		const kitsuData = KitsuEpisodesResponse(await kitsuResp.json());
@@ -27,7 +27,12 @@ export const list = query(Props, async ({ options, query }): Resp => {
 			error(500, kitsuData.summary);
 		}
 
-		episodeList.push(...kitsuData.data.map((v) => v.attributes));
+		episodeList.push(
+			...kitsuData.data.map((v) => ({
+				...v.attributes,
+				canonicalTitle: v.attributes.canonicalTitle ?? `Odcinek ${v.attributes.number}`
+			}))
+		);
 
 		if (page === 0) {
 			pageCount = Math.floor(kitsuData.meta.count / 20);
