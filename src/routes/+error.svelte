@@ -2,9 +2,9 @@
 	import { page } from '$app/state';
 </script>
 
-<div class="m-4 grid h-full place-items-center">
+<div class="grid h-full place-items-center p-4">
 	<div
-		class="card mx-4 my-auto max-h-4/5 min-h-2/5 w-full max-w-3xl self-center bg-base-300 shadow-sm drop-shadow-xl"
+		class="card my-auto max-h-4/5 min-h-2/5 w-full max-w-3xl self-center bg-base-300 px-4 shadow-sm drop-shadow-xl"
 	>
 		<div class="card-body items-center justify-center gap-2 p-6 text-2xl font-bold md:text-4xl">
 			<h2>{page.status}</h2>
