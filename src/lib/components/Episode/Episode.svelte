@@ -58,7 +58,7 @@
 <!-- {#if groups} -->
 <dialog bind:this={dialog} class="modal p-5 backdrop-blur-xs">
 	<div class="modal-box max-h-full min-h-max w-full max-w-4xl min-w-0">
-		<Banner src={bannerUrl} height="50" />
+		<Banner src={bannerUrl} height="75" class="w-full" />
 
 		<div class="flex h-full flex-col pt-25">
 			<h2 class="mb-4 text-2xl font-bold">{episode.title}</h2>

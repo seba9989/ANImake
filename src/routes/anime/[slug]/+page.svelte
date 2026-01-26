@@ -117,7 +117,7 @@
 			<div>TODO: Dodać sortowanie po grupach</div>
 		{:else if searchParams.sortBy === 'episodes'}
 			{#each episodesList?.data as { episode, groups }}
-				<Episode {episode} {groups} />
+				<Episode {episode} {groups} bannerUrl={episode.coverUrl ?? ''} />
 			{/each}
 		{/if}
 	</div>
