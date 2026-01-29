@@ -29,6 +29,8 @@
 
 		if (seriesData?.bannerUrl) return seriesData.bannerUrl;
 
+		if (seriesData?.coverUrl) return seriesData.coverUrl;
+
 		return 'https://img1.ak.crunchyroll.com/i/spire4-tmb/d80b3fbce742e6deb4d2caf37d08ca6e1395451246_full.jpg';
 	});
 </script>
