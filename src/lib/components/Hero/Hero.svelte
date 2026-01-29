@@ -67,7 +67,7 @@
 	>
 		{#each seriesList as { bannerUrl }}
 			<SplideSlide class="h-full *:h-full">
-				<div class=" w-screen bg-cover" style="background-image: url({bannerUrl});">
+				<div class=" w-svw bg-cover bg-center" style="background-image: url({bannerUrl});">
 					<div
 						class="h-full w-full bg-linear-to-t from-base-100 from-25% backdrop-brightness-80"
 					></div>

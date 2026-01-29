@@ -23,7 +23,7 @@
 	);
 </script>
 
-<div class="">
+<div class="p-4">
 	<a
 		href={url.searchUrl(query)}
 		class="mr-6 mb-2 flex items-end justify-between opacity-70 transition-opacity duration-100 hover:opacity-100"
