@@ -66,7 +66,7 @@
 		await series.list({
 			options: {
 				page: params.page,
-				perPage: 12
+				perPage: 42
 			},
 			query: {
 				searchTitle: params.title,
