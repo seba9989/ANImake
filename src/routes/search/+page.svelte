@@ -86,7 +86,7 @@
 			<Form.Field bind:value={params.title} placeholder="Dowolny" />
 		</div>
 
-		<div class="grid grid-cols-[repeat(4,1fr)_auto] gap-2">
+		<div class="grid grid-cols-[repeat(2,1fr)] gap-2 md:grid-cols-[repeat(4,1fr)_auto]">
 			<div>
 				<h3>Rok</h3>
 				<Form.Combobox
@@ -146,7 +146,7 @@
 		</div>
 	</Form>
 
-	<div class="mx-8 flex flex-wrap gap-8">
+	<div class="flex flex-wrap gap-8 not-md:justify-around md:mx-8">
 		<svelte:boundary>
 			{#each seriesList?.data as series}
 				<Cover {series} />

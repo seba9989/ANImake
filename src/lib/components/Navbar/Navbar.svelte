@@ -74,9 +74,9 @@
 		{#each [...topMenu, ...bottomMenu].toReversed() as { href, icon, disable }}
 			{@const Icon = icon}
 			{#if disable}
-				<button disabled class="btn btn-circle btn-lg"><Icon /></button>
+				<button disabled class="btn btn-circle btn-lg btn-secondary"><Icon /></button>
 			{:else}
-				<a {href} class="btn btn-circle btn-lg"><Icon /></a>
+				<a {href} class="btn btn-circle btn-lg btn-secondary"><Icon /></a>
 			{/if}
 		{/each}
 	</div>
