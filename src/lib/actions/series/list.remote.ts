@@ -3,7 +3,7 @@ import { db, search } from '$lib/server/db';
 import { group, series, seriesToGroup } from '$lib/server/db/schema';
 import { addMeta, getManyProps, type GetManyResp } from '$lib/utils/dbParse';
 import { createSelectSchema } from 'drizzle-arktype';
-import { and, eq, inArray, isNotNull } from 'drizzle-orm';
+import { and, asc, eq, inArray, isNotNull, sql } from 'drizzle-orm';
 
 const Props = getManyProps({
 	'searchTitle?': 'string',
@@ -47,6 +47,9 @@ export const list = query(Props, async ({ options, query }): Resp => {
 						)
 					: undefined
 			)
+		)
+		.orderBy(
+			query.searchTitle ? sql`similarity(${series.title}, ${query.searchTitle}) DESC` : asc(series.title)
 		)
 		.$dynamic();
 

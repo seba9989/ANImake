@@ -65,7 +65,8 @@
 	let seriesList = $derived(
 		await series.list({
 			options: {
-				page: 1
+				page: params.page,
+				perPage: 12
 			},
 			query: {
 				searchTitle: params.title,
@@ -146,7 +147,7 @@
 		</div>
 	</Form>
 
-	<div class="flex flex-wrap gap-8 not-md:justify-around md:mx-8">
+	<div class="flex flex-wrap justify-around gap-8 md:mx-8">
 		<svelte:boundary>
 			{#each seriesList?.data as series}
 				<Cover {series} />
@@ -159,6 +160,11 @@
 			{/snippet}
 		</svelte:boundary>
 	</div>
+	{#if seriesList?.metadata}
+		<div class=" ml-auto">
+			<Form.Pages metadata={seriesList?.metadata} bind:value={params.page} />
+		</div>
+	{/if}
 </div>
 
 <style lang="postcss">

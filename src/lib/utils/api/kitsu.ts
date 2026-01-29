@@ -134,7 +134,7 @@ const AnimeAttributes = type({
 	nextRelease: 'null | string',
 	popularityRank: 'number',
 	'ratingRank?': 'number | null',
-	ageRating: 'string',
+	'ageRating?': 'string | null',
 	'ageRatingGuide?': 'string | null',
 	subtype: 'string',
 	status: 'string',
@@ -143,7 +143,7 @@ const AnimeAttributes = type({
 	'coverImage?': [CoverImage, '|', 'null'],
 	'episodeCount?': 'number | null',
 	'episodeLength?': 'number | null',
-	totalLength: 'number',
+	'totalLength?': 'number | null',
 	'youtubeVideoId?': 'string | null',
 	showType: type('string').pipe.try(
 		(str) => str.toLowerCase(),
